@@ -1,0 +1,234 @@
+fileFormatVersion: 2
+guid: b6fa552afd2a0e44bb9b83f489426b0b
+timeCreated: 1501062884
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group2
+    100004: group3
+    100006: pTorus1
+    100008: pTorus10
+    100010: pTorus11
+    100012: pTorus12
+    100014: pTorus13
+    100016: pTorus14
+    100018: pTorus15
+    100020: pTorus16
+    100022: pTorus17
+    100024: pTorus18
+    100026: pTorus19
+    100028: pTorus2
+    100030: pTorus20
+    100032: pTorus21
+    100034: pTorus22
+    100036: pTorus23
+    100038: pTorus24
+    100040: pTorus25
+    100042: pTorus26
+    100044: pTorus27
+    100046: pTorus28
+    100048: pTorus29
+    100050: pTorus3
+    100052: pTorus4
+    100054: pTorus5
+    100056: pTorus6
+    100058: pTorus7
+    100060: pTorus8
+    100062: pTorus9
+    100064: Track
+    400000: //RootNode
+    400002: group2
+    400004: group3
+    400006: pTorus1
+    400008: pTorus10
+    400010: pTorus11
+    400012: pTorus12
+    400014: pTorus13
+    400016: pTorus14
+    400018: pTorus15
+    400020: pTorus16
+    400022: pTorus17
+    400024: pTorus18
+    400026: pTorus19
+    400028: pTorus2
+    400030: pTorus20
+    400032: pTorus21
+    400034: pTorus22
+    400036: pTorus23
+    400038: pTorus24
+    400040: pTorus25
+    400042: pTorus26
+    400044: pTorus27
+    400046: pTorus28
+    400048: pTorus29
+    400050: pTorus3
+    400052: pTorus4
+    400054: pTorus5
+    400056: pTorus6
+    400058: pTorus7
+    400060: pTorus8
+    400062: pTorus9
+    400064: Track
+    2300000: pTorus1
+    2300002: pTorus10
+    2300004: pTorus11
+    2300006: pTorus12
+    2300008: pTorus13
+    2300010: pTorus14
+    2300012: pTorus15
+    2300014: pTorus16
+    2300016: pTorus17
+    2300018: pTorus18
+    2300020: pTorus19
+    2300022: pTorus2
+    2300024: pTorus20
+    2300026: pTorus21
+    2300028: pTorus22
+    2300030: pTorus23
+    2300032: pTorus24
+    2300034: pTorus25
+    2300036: pTorus26
+    2300038: pTorus27
+    2300040: pTorus28
+    2300042: pTorus29
+    2300044: pTorus3
+    2300046: pTorus4
+    2300048: pTorus5
+    2300050: pTorus6
+    2300052: pTorus7
+    2300054: pTorus8
+    2300056: pTorus9
+    2300058: Track
+    3300000: pTorus1
+    3300002: pTorus10
+    3300004: pTorus11
+    3300006: pTorus12
+    3300008: pTorus13
+    3300010: pTorus14
+    3300012: pTorus15
+    3300014: pTorus16
+    3300016: pTorus17
+    3300018: pTorus18
+    3300020: pTorus19
+    3300022: pTorus2
+    3300024: pTorus20
+    3300026: pTorus21
+    3300028: pTorus22
+    3300030: pTorus23
+    3300032: pTorus24
+    3300034: pTorus25
+    3300036: pTorus26
+    3300038: pTorus27
+    3300040: pTorus28
+    3300042: pTorus29
+    3300044: pTorus3
+    3300046: pTorus4
+    3300048: pTorus5
+    3300050: pTorus6
+    3300052: pTorus7
+    3300054: pTorus8
+    3300056: pTorus9
+    3300058: Track
+    4300000: Track
+    4300002: pTorus25
+    4300004: pTorus1
+    4300006: pTorus3
+    4300008: pTorus5
+    4300010: pTorus7
+    4300012: pTorus9
+    4300014: pTorus11
+    4300016: pTorus13
+    4300018: pTorus15
+    4300020: pTorus17
+    4300022: pTorus19
+    4300024: pTorus21
+    4300026: pTorus23
+    4300028: pTorus29
+    4300030: pTorus27
+    4300032: pTorus26
+    4300034: pTorus2
+    4300036: pTorus4
+    4300038: pTorus6
+    4300040: pTorus8
+    4300042: pTorus10
+    4300044: pTorus12
+    4300046: pTorus14
+    4300048: pTorus16
+    4300050: pTorus18
+    4300052: pTorus20
+    4300054: pTorus22
+    4300056: pTorus24
+    4300058: pTorus28
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 700
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

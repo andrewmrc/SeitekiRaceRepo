@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ce569652b3523f94486cf7c01f62235e
+timeCreated: 1501491406
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AlternateGothic2 BT
+  fontNames:
+  - AlternateGothic2 BT
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
