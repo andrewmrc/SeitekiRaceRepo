@@ -15,6 +15,8 @@ public class MovePlayer : MonoBehaviour
 
     public KeyCode moveR, moveL;
 
+    public bool left, right;
+
     public Action<int> delCurrentLane;
    
     private void Start()
@@ -30,28 +32,39 @@ public class MovePlayer : MonoBehaviour
         xless2 = refGM.lane_less_2.localPosition.x;
     }
 
-    public void TurnLeft()
+    //public void TurnLeft()
+    //{
+    //    if (!isMovingLane && numLane > -2)
+    //    {
+    //        numLane--;
+    //        anim.SetBool("isTurnLeft", true);
+    //        delCurrentLane(numLane);
+    //        ChangeLane(numLane);
+    //        StartCoroutine(SetFalseBool("isTurnLeft"));
+    //    }
+    //}
+
+    //public void TurnRight()
+    //{
+    //    if (!isMovingLane && numLane < 2)
+    //    {
+    //        anim.SetBool("isTurnRight", true);
+    //        numLane++;
+    //        delCurrentLane(numLane);
+    //        ChangeLane(numLane);
+    //        StartCoroutine(SetFalseBool("isTurnRight"));
+    //    }
+    //}
+
+
+    public void SetLeftBool(bool value)
     {
-        if (!isMovingLane && numLane > -2)
-        {
-            numLane--;
-            anim.SetBool("isTurnLeft", true);
-            delCurrentLane(numLane);
-            ChangeLane(numLane);
-            StartCoroutine(SetFalseBool("isTurnLeft"));
-        }
+        left = value;
     }
 
-    public void TurnRight()
+    public void SetRightBool(bool value)
     {
-        if (!isMovingLane && numLane < 2)
-        {
-            anim.SetBool("isTurnRight", true);
-            numLane++;
-            delCurrentLane(numLane);
-            ChangeLane(numLane);
-            StartCoroutine(SetFalseBool("isTurnRight"));
-        }
+        right = value;
     }
 
     private void Update()
@@ -59,24 +72,46 @@ public class MovePlayer : MonoBehaviour
         // Move forward the player
         transform.Translate(transform.forward * (-speed) * Time.deltaTime);
 
+        if (Input.GetKey(moveL)){
+            left = true;
+        } 
+
+        if (Input.GetKeyUp(moveL))
+        {
+            left = false;
+        }
+
+        if (Input.GetKey(moveR))
+        {
+            right = true;
+        }
+        
+        if(Input.GetKeyUp(moveR))
+        {
+            right = false;
+        }
+
+
         // If i move left
-        if (Input.GetKeyDown(moveL) && !isMovingLane && numLane > -2)
+        if (left && !isMovingLane && numLane > -2)
         {
             numLane--;
             anim.SetBool("isTurnLeft", true);
             delCurrentLane(numLane);
             ChangeLane(numLane);
             StartCoroutine(SetFalseBool("isTurnLeft"));
+            
         }
 
         // If i move right
-        if (Input.GetKeyDown(moveR) && !isMovingLane && numLane < 2)
+        if (right && !isMovingLane && numLane < 2)
         {
             anim.SetBool("isTurnRight", true);
             numLane++;
             delCurrentLane(numLane);
             ChangeLane(numLane);
             StartCoroutine(SetFalseBool("isTurnRight"));
+            
         }
     }
 
