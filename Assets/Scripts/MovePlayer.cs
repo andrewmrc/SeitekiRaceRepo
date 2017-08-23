@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -18,7 +19,11 @@ public class MovePlayer : MonoBehaviour
     public bool left, right;
 
     public Action<int> delCurrentLane;
-   
+
+    float offsetValue = 0.05f;
+
+    public GameObject offSetValueText;
+
     private void Start()
     {
         refGM = FindObjectOfType<GameManager>();
@@ -71,6 +76,27 @@ public class MovePlayer : MonoBehaviour
     {
         // Move forward the player
         transform.Translate(transform.forward * (-speed) * Time.deltaTime);
+
+        float x = Input.acceleration.x;
+        Debug.Log("X = " + x);
+        offSetValueText.GetComponent<Text>().text = "Value: " + offsetValue.ToString();
+
+        if (x < -offsetValue)
+        {
+            right = false;
+            left = true;
+        }
+        else if (x > offsetValue)
+        {
+            left = false;
+            right = true;
+        }
+        else
+        {
+            left = false;
+            right = false;
+        }
+
 
         if (Input.GetKey(moveL)){
             left = true;
@@ -157,4 +183,15 @@ public class MovePlayer : MonoBehaviour
         yield return null;
         anim.SetBool(_bool, false);
     }
+
+    public void IncreaseOffsetValue()
+    {
+        offsetValue+=0.1f;
+    }
+
+    public void DecreaseOffsetValue()
+    {
+        offsetValue-=0.1f;
+    }
+
 }
