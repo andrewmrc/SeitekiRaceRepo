@@ -20,12 +20,18 @@ public class MovePlayer : MonoBehaviour
 
     public Action<int> delCurrentLane;
 
-    float offsetValue = 0.05f;
+    float offsetValue = 0.2f;
 
     public GameObject offSetValueText;
 
+    float fpsCounter = 0;
+    float frequency = 0.5f;
+
+    public int FramesPerSec { get; protected set; }
+
     private void Start()
     {
+        StartCoroutine(FPS());
         refGM = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
 
@@ -36,6 +42,24 @@ public class MovePlayer : MonoBehaviour
         xless1 = refGM.lane_less_1.localPosition.x;
         xless2 = refGM.lane_less_2.localPosition.x;
     }
+
+    private IEnumerator FPS()
+    {
+        for (;;)
+        {
+            // Capture frame-per-second
+            int lastFrameCount = Time.frameCount;
+            float lastTime = Time.realtimeSinceStartup;
+            yield return new WaitForSeconds(frequency);
+            float timeSpan = Time.realtimeSinceStartup - lastTime;
+            int frameCount = Time.frameCount - lastFrameCount;
+
+            // Display it
+            FramesPerSec = Mathf.RoundToInt(frameCount / timeSpan);
+            offSetValueText.GetComponent<Text>().text = FramesPerSec.ToString() + " fps";
+        }
+    }
+
 
     //public void TurnLeft()
     //{
@@ -76,10 +100,20 @@ public class MovePlayer : MonoBehaviour
     {
         // Move forward the player
         transform.Translate(transform.forward * (-speed) * Time.deltaTime);
-
+        //float movex = 0;
         float x = Input.acceleration.x;
         Debug.Log("X = " + x);
-        offSetValueText.GetComponent<Text>().text = "Value: " + offsetValue.ToString();
+
+        fpsCounter += (Time.deltaTime - fpsCounter) * .1f;
+        //offSetValueText.GetComponent<Text>().text = "Value: " + fpsCounter.ToString();
+
+        
+
+        //if (Mathf.Abs(x) > offsetValue)
+        //{
+        //    movex = Mathf.Sign(x) * speed;
+        //    transform.Translate(movex, 0, 0);
+        //}
 
         if (x < -offsetValue)
         {
@@ -177,7 +211,7 @@ public class MovePlayer : MonoBehaviour
         isMovingLane = false;
     }
 
-    // Coroutine for set false bool in animator with a little dealy
+    // Coroutine for set false bool in animator with a little delay
     private IEnumerator SetFalseBool(string _bool)
     {
         yield return null;

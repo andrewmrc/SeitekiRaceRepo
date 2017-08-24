@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject scorePoint, fillPower;
     public TextMesh textScorePlayer;
     public int currentScore;
+    public GameObject shootButton;
 
     // Assign delegates to their methods
     private void Awake()
@@ -37,13 +38,13 @@ public class GameManager : MonoBehaviour
         refCP.delMuzzle = Muzzle;
         refCP.delPill = Pill;
         refCP.delUnderwear = Underwear;
+
         //StartCoroutine(DistanceScore());
     }
 
     private void Update()
     {
         scorePoint.GetComponentInChildren<Text>().text = currentScore.ToString();
-
     }
 
     private IEnumerator StartCounterCO()
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             startCounter.color = Color.magenta;
             yield return new WaitForSecondsRealtime(1f);
             startCounter.gameObject.SetActive(false);
+            shootButton.SetActive(true);
             Time.timeScale = 1;
         }
         StartCoroutine(DistanceScore());
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Circuit 1");
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
     }
 
     // Method called to return in main menu
