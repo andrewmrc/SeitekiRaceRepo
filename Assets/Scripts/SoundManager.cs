@@ -6,8 +6,9 @@ public class SoundManager : MonoBehaviour
 {
     private MovePlayer refMP;
     private GameManager refGM;
+    public AudioTrackClass clipList;
     public AudioClip[] audioClipArray;
-    public Transform[] laneArray = new Transform[4];
+    public Transform[] laneArray = new Transform[5];
     public AudioSource audioSoundManager;
 
     public int currIndexAudioClipArray;
@@ -16,31 +17,40 @@ public class SoundManager : MonoBehaviour
     {
         refMP = FindObjectOfType<MovePlayer>();
         refGM = FindObjectOfType<GameManager>();
-        refMP.delCurrentLane = PlaySingleTrack;
+        refGM.delCurrentLane = PlaySingleTrack;
         audioSoundManager = GetComponent<AudioSource>();
 
-        laneArray[0] = refGM.lane_1;
-        laneArray[1] = refGM.lane_2;
-        laneArray[2] = refGM.lane_less_1;
-        laneArray[3] = refGM.lane_less_2;
+        laneArray[0] = refGM.lane_0;
+        laneArray[1] = refGM.lane_1;
+        laneArray[2] = refGM.lane_2;
+        laneArray[3] = refGM.lane_less_1;
+        laneArray[4] = refGM.lane_less_2;
 
         SetAudioClip();
     }
 
-    private void PlaySingleTrack(int _numLane)
+    private void PlaySingleTrack(int _numLane, bool _on)
     {
         switch (_numLane)
         {
-            case 0:
-                StartCoroutine(IncreaseVolumeCO(refGM.lane_0));
+            //case 0:
+            //    StartCoroutine(IncreaseVolumeCO(refGM.lane_0));
 
-                //StartCoroutine(DecreaseVolumeCO(lane_1));
-                //StartCoroutine(DecreaseVolumeCO(lane_2));
-                //StartCoroutine(DecreaseVolumeCO(lane_less_1));
-                //StartCoroutine(DecreaseVolumeCO(lane_less_2));
-                break;
+            //    StartCoroutine(DecreaseVolumeCO(lane_1));
+            //    StartCoroutine(DecreaseVolumeCO(lane_2));
+            //    StartCoroutine(DecreaseVolumeCO(lane_less_1));
+            //    StartCoroutine(DecreaseVolumeCO(lane_less_2));
+            //    break;
             case 1:
-                StartCoroutine(IncreaseVolumeCO(refGM.lane_1));
+                if (_on)
+                {
+                    StartCoroutine(IncreaseVolumeCO(refGM.lane_1));
+                }
+                else
+                {
+                    StartCoroutine(DecreaseVolumeCO(refGM.lane_1));
+                }
+                
 
                 //StartCoroutine(DecreaseVolumeCO(lane_0));
                 //StartCoroutine(DecreaseVolumeCO(lane_2));
@@ -48,7 +58,14 @@ public class SoundManager : MonoBehaviour
                 //StartCoroutine(DecreaseVolumeCO(lane_less_2));
                 break;
             case 2:
-                StartCoroutine(IncreaseVolumeCO(refGM.lane_2));
+                if (_on)
+                {
+                    StartCoroutine(IncreaseVolumeCO(refGM.lane_2));
+                }
+                else
+                {
+                    StartCoroutine(DecreaseVolumeCO(refGM.lane_2));
+                }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
                 //StartCoroutine(DecreaseVolumeCO(lane_0));
@@ -56,7 +73,14 @@ public class SoundManager : MonoBehaviour
                 //StartCoroutine(DecreaseVolumeCO(lane_less_2));
                 break;
             case -1:
-                StartCoroutine(IncreaseVolumeCO(refGM.lane_less_1));
+                if (_on)
+                {
+                    StartCoroutine(IncreaseVolumeCO(refGM.lane_less_1));
+                }
+                else
+                {
+                    StartCoroutine(DecreaseVolumeCO(refGM.lane_less_1));
+                }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
                 //StartCoroutine(DecreaseVolumeCO(lane_2));
@@ -65,7 +89,14 @@ public class SoundManager : MonoBehaviour
 
                 break;
             case -2:
-                StartCoroutine(IncreaseVolumeCO(refGM.lane_less_2));
+                if (_on)
+                {
+                    StartCoroutine(IncreaseVolumeCO(refGM.lane_less_2));
+                }
+                else
+                {
+                    StartCoroutine(DecreaseVolumeCO(refGM.lane_less_2));
+                }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
                 //StartCoroutine(DecreaseVolumeCO(lane_2));
@@ -77,7 +108,7 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator IncreaseVolumeCO(Transform _lane)
     {
-        _lane.GetComponent<AudioSource>().volume = 1;
+        _lane.GetComponent<AudioSource>().volume = 0.7f;
         yield return null;
     }
 

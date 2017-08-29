@@ -34,7 +34,7 @@ public class ShootingPlayer : MonoBehaviour
 
     private void KillPig(int _value)
     {
-        refGM.currentScore += _value;
-        StartCoroutine(refGM.FeedbackBonusCO(_value));
+        //refGM.currentScore += _value;
+        //StartCoroutine(refGM.FeedbackBonusCO(_value));
     }
 }

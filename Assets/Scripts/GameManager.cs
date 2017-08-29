@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Text scoreGO, scoreFL, startCounter;
     public Transform lane_0, lane_1, lane_2, lane_less_1, lane_less_2;
 
+    public Action<int,bool> delCurrentLane;
 
     public GameObject scorePoint, fillPower;
     public TextMesh textScorePlayer;
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour
     // Show green plus score feedback
     public IEnumerator FeedbackBonusCO(float _value)
     {
+        delCurrentLane(refMP.numLane, true);
         if (fillPower.GetComponent<Image>().fillAmount <= 0.9f)
         {
             fillPower.GetComponent<Image>().fillAmount += .1f;
@@ -126,6 +129,7 @@ public class GameManager : MonoBehaviour
     // Show red minus score feedback
     public IEnumerator FeedbackMalusCO(float _value)
     {
+        delCurrentLane(refMP.numLane, false);
         textScorePlayer.gameObject.SetActive(true);
         textScorePlayer.color = Color.red;
         fillPower.GetComponent<Image>().fillAmount -= .1f;
@@ -257,6 +261,7 @@ public class GameManager : MonoBehaviour
         {
             case "Penis":
                 currentScore -= _value;
+
                 StartCoroutine(FeedbackMalusCO(_value));
                 break;
             case "Vagina":

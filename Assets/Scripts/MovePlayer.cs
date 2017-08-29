@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
 
     public bool left, right;
 
-    public Action<int> delCurrentLane;
+    
 
     float offsetValue = 0.2f;
 
@@ -157,7 +157,7 @@ public class MovePlayer : MonoBehaviour
         {
             numLane--;
             anim.SetBool("isTurnLeft", true);
-            delCurrentLane(numLane);
+            //delCurrentLane(numLane);
             ChangeLane(numLane);
             StartCoroutine(SetFalseBool("isTurnLeft"));
             
@@ -168,7 +168,7 @@ public class MovePlayer : MonoBehaviour
         {
             anim.SetBool("isTurnRight", true);
             numLane++;
-            delCurrentLane(numLane);
+            //delCurrentLane(numLane);
             ChangeLane(numLane);
             StartCoroutine(SetFalseBool("isTurnRight"));
             
