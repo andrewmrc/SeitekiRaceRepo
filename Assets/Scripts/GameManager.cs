@@ -15,12 +15,21 @@ public class GameManager : MonoBehaviour
     public Text scoreGO, scoreFL, startCounter;
     public Transform lane_0, lane_1, lane_2, lane_less_1, lane_less_2;
 
+    public float initialY;
+
     public Action<int,bool> delCurrentLane;
 
     public GameObject scorePoint, fillPower;
     public TextMesh textScorePlayer;
     public int currentScore;
     public GameObject shootButton;
+
+    public GameObject fpsCounterText;
+    float fpsCounter = 0;
+    float frequency = 0.5f;
+
+    public int FramesPerSec { get; protected set; }
+    public bool pickup;
 
     // Assign delegates to their methods
     private void Awake()
@@ -40,14 +49,44 @@ public class GameManager : MonoBehaviour
         refCP.delMuzzle = Muzzle;
         refCP.delPill = Pill;
         refCP.delUnderwear = Underwear;
-
+        textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
+        initialY = textScorePlayer.transform.localPosition.y;
+        textScorePlayer.gameObject.SetActive(false);
         //StartCoroutine(DistanceScore());
+
+        StartCoroutine(FPS());
     }
 
     private void Update()
     {
         scorePoint.GetComponentInChildren<Text>().text = currentScore.ToString();
+        fpsCounter += (Time.deltaTime - fpsCounter) * .1f;
+        if (!pickup)
+        {
+            StopCoroutine("FeedbackBonusCO");
+            StopCoroutine("FeedbackMalusCO");
+            ResetTextScore();
+        }
     }
+
+
+    private IEnumerator FPS()
+    {
+        for (;;)
+        {
+            // Capture frame-per-second
+            int lastFrameCount = Time.frameCount;
+            float lastTime = Time.realtimeSinceStartup;
+            yield return new WaitForSeconds(frequency);
+            float timeSpan = Time.realtimeSinceStartup - lastTime;
+            int frameCount = Time.frameCount - lastFrameCount;
+
+            // Display it
+            FramesPerSec = Mathf.RoundToInt(frameCount / timeSpan);
+            fpsCounterText.GetComponent<Text>().text = FramesPerSec.ToString() + " fps";
+        }
+    }
+
 
     private IEnumerator StartCounterCO()
     {
@@ -101,7 +140,14 @@ public class GameManager : MonoBehaviour
     // Show green plus score feedback
     public IEnumerator FeedbackBonusCO(float _value)
     {
+        //Debug.Log("CallBonus");
+        pickup = false;
+        pickup = true;
+
+        //Attiva la clip audio
         delCurrentLane(refMP.numLane, true);
+
+        //
         if (fillPower.GetComponent<Image>().fillAmount <= 0.9f)
         {
             fillPower.GetComponent<Image>().fillAmount += .1f;
@@ -115,36 +161,50 @@ public class GameManager : MonoBehaviour
 
         textScorePlayer.gameObject.SetActive(true);
         textScorePlayer.color = Color.green;        
-        float initialY = textScorePlayer.transform.position.y;
-        while (textScorePlayer.transform.position.y <= 25f)
+        //initialY = textScorePlayer.transform.position.y;
+
+        //fa muovere il text score verso l'alto
+        while (textScorePlayer.transform.localPosition.y <= 25f || !pickup)
         {
-            textScorePlayer.transform.position += new Vector3(0f, .5f, 0f);
+            Debug.Log("CallBonus");
+            textScorePlayer.transform.localPosition += new Vector3(0f, .5f, 0f);
             textScorePlayer.text = "+ " + _value.ToString();
             yield return null;
         }
-        textScorePlayer.gameObject.SetActive(false);
-        textScorePlayer.transform.position = new Vector3(textScorePlayer.transform.position.x, initialY, textScorePlayer.transform.position.z);
+        ResetTextScore();
     }
 
     // Show red minus score feedback
     public IEnumerator FeedbackMalusCO(float _value)
     {
+        pickup = false;
+        pickup = true;
+
+        //Disattiva la clip audio
         delCurrentLane(refMP.numLane, false);
+
         textScorePlayer.gameObject.SetActive(true);
         textScorePlayer.color = Color.red;
         fillPower.GetComponent<Image>().fillAmount -= .1f;
 
-        float initialY = textScorePlayer.transform.position.y;
+        //initialY = textScorePlayer.transform.position.y;
 
-        while (textScorePlayer.transform.position.y <= 25f)
+        //fa muovere il text score verso l'alto
+        while (textScorePlayer.transform.localPosition.y <= 25f || !pickup)
         {
-            textScorePlayer.transform.position += new Vector3(0f, .5f, 0f);
+            textScorePlayer.transform.localPosition += new Vector3(0f, .5f, 0f);
             textScorePlayer.text = "- " + _value.ToString();
             yield return null;
         }
+        ResetTextScore();
+    }
 
+
+    public void ResetTextScore()
+    {
+        pickup = false;
         textScorePlayer.gameObject.SetActive(false);
-        textScorePlayer.transform.position = new Vector3(textScorePlayer.transform.position.x, initialY, textScorePlayer.transform.position.z);
+        textScorePlayer.transform.localPosition = new Vector3(textScorePlayer.transform.localPosition.x, initialY, textScorePlayer.transform.localPosition.z);
     }
 
 #region DelegatesMethods

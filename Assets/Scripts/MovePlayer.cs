@@ -18,20 +18,11 @@ public class MovePlayer : MonoBehaviour
 
     public bool left, right;
 
-    
-
     float offsetValue = 0.2f;
 
-    public GameObject offSetValueText;
-
-    float fpsCounter = 0;
-    float frequency = 0.5f;
-
-    public int FramesPerSec { get; protected set; }
 
     private void Start()
     {
-        StartCoroutine(FPS());
         refGM = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
 
@@ -43,24 +34,7 @@ public class MovePlayer : MonoBehaviour
         xless2 = refGM.lane_less_2.localPosition.x;
     }
 
-    private IEnumerator FPS()
-    {
-        for (;;)
-        {
-            // Capture frame-per-second
-            int lastFrameCount = Time.frameCount;
-            float lastTime = Time.realtimeSinceStartup;
-            yield return new WaitForSeconds(frequency);
-            float timeSpan = Time.realtimeSinceStartup - lastTime;
-            int frameCount = Time.frameCount - lastFrameCount;
-
-            // Display it
-            FramesPerSec = Mathf.RoundToInt(frameCount / timeSpan);
-            offSetValueText.GetComponent<Text>().text = FramesPerSec.ToString() + " fps";
-        }
-    }
-
-
+    
     //public void TurnLeft()
     //{
     //    if (!isMovingLane && numLane > -2)
@@ -102,18 +76,8 @@ public class MovePlayer : MonoBehaviour
         transform.Translate(transform.forward * (-speed) * Time.deltaTime);
         //float movex = 0;
         float x = Input.acceleration.x;
-        Debug.Log("X = " + x);
+        //Debug.Log("X = " + x);
 
-        fpsCounter += (Time.deltaTime - fpsCounter) * .1f;
-        //offSetValueText.GetComponent<Text>().text = "Value: " + fpsCounter.ToString();
-
-        
-
-        //if (Mathf.Abs(x) > offsetValue)
-        //{
-        //    movex = Mathf.Sign(x) * speed;
-        //    transform.Translate(movex, 0, 0);
-        //}
 
         if (x < -offsetValue)
         {

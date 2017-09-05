@@ -13,14 +13,23 @@ public class ShootingPlayer : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    GameObject bulletSpawned = Instantiate(prefab);
-        //    bulletSpawned.transform.position = this.transform.position;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
 
-        //    refBullet = FindObjectOfType<Bullet>();
-        //    refBullet.delKillPig = KillPig;
+        //if (Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Moved*/)
+        //{
+        //    Shoot();
         //}
+
+
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+                Shoot();
+        }
+
     }
 
     public void Shoot()
