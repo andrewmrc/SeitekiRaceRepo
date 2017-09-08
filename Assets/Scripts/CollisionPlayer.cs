@@ -14,17 +14,29 @@ public class CollisionPlayer : MonoBehaviour
     public Action<int, string> delPill;
     public Action<bool> delGameOver;
     public Action<bool> delFinishLevel;
+    public Action<int> delRecharge;
+
 
     private AudioSource audioSource;
+    private GameManager refGM;
+
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        refGM = FindObjectOfType<GameManager>();
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            delRecharge(10);
+            Destroy(collision.gameObject);
+            audioSource.Play();
+        }
+
         if (collision.gameObject.tag == "Obstacle")
         {
             delGameOver(true);

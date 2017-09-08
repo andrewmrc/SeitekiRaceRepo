@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private SoundManager refSM;
     private InvincibilitySphere refInv;
     public GameObject panelGameOver, panelFinishedLevel;
-    public Text scoreGO, scoreFL, startCounter;
+    public Text scoreGO, scoreFL, startCounter, nProjectilesText;
     public Transform lane_0, lane_1, lane_2, lane_less_1, lane_less_2;
 
     public float initialY;
@@ -31,9 +31,14 @@ public class GameManager : MonoBehaviour
     public int FramesPerSec { get; protected set; }
     public bool pickup;
 
+
+    //Variabili relative allo shooting
+    public int nProjectiles = 10;
+
     // Assign delegates to their methods
     private void Awake()
     {
+        nProjectilesText.text = nProjectiles.ToString();
         Time.timeScale = 0;
         StartCoroutine(StartCounterCO());
         refMP = FindObjectOfType<MovePlayer>();
@@ -49,6 +54,7 @@ public class GameManager : MonoBehaviour
         refCP.delMuzzle = Muzzle;
         refCP.delPill = Pill;
         refCP.delUnderwear = Underwear;
+        refCP.delRecharge = RechargeProjectiles;
         textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
         initialY = textScorePlayer.transform.localPosition.y;
         textScorePlayer.gameObject.SetActive(false);
@@ -147,17 +153,17 @@ public class GameManager : MonoBehaviour
         //Attiva la clip audio
         delCurrentLane(refMP.numLane, true);
 
-        //
-        if (fillPower.GetComponent<Image>().fillAmount <= 0.9f)
-        {
-            fillPower.GetComponent<Image>().fillAmount += .1f;
-        }
-        else
-        {
-            // Set the superpower and reset the fillPower
-            StartCoroutine(refInv.IncreaseSizeCO());
-            fillPower.GetComponent<Image>().fillAmount = 0f;
-        }
+        ////Incrementa il potere per attivare la sfera di invincibilità
+        //if (fillPower.GetComponent<Image>().fillAmount <= 0.9f)
+        //{
+        //    fillPower.GetComponent<Image>().fillAmount += .1f;
+        //}
+        //else
+        //{
+        //    // Set the superpower and reset the fillPower
+        //    StartCoroutine(refInv.IncreaseSizeCO());
+        //    fillPower.GetComponent<Image>().fillAmount = 0f;
+        //}
 
         textScorePlayer.gameObject.SetActive(true);
         textScorePlayer.color = Color.green;        
@@ -207,7 +213,20 @@ public class GameManager : MonoBehaviour
         textScorePlayer.transform.localPosition = new Vector3(textScorePlayer.transform.localPosition.x, initialY, textScorePlayer.transform.localPosition.z);
     }
 
-#region DelegatesMethods
+    #region DelegatesMethods
+
+    // Recharge Projectiles
+    private void RechargeProjectiles(int nP)
+    {
+        nProjectiles += nP;
+        if(nProjectiles > 10)
+        {
+            nProjectiles = 10;
+        }
+        nProjectilesText.text = nProjectiles.ToString();
+        fillPower.GetComponent<Image>().fillAmount = nProjectiles/10;
+    }
+
 
     // Stop all music, active panel Finish Level and play sound
     private void FinishedLevel(bool _on)

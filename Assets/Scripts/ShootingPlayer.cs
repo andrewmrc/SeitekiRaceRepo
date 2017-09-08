@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootingPlayer : MonoBehaviour
 {
@@ -13,21 +14,25 @@ public class ShootingPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
+        if (refGM.nProjectiles > 0) { 
 
-        //if (Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Moved*/)
-        //{
-        //    Shoot();
-        //}
-
-
-        for (int i = 0; i < Input.touchCount; ++i)
-        {
-            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            if (Input.GetMouseButtonDown(0))
+            {
                 Shoot();
+            }
+
+            //if (Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Moved*/)
+            //{
+            //    Shoot();
+            //}
+
+        
+            for (int i = 0; i < Input.touchCount; ++i)
+            {
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    Shoot();
+            }
+
         }
 
     }
@@ -36,7 +41,9 @@ public class ShootingPlayer : MonoBehaviour
     {
         GameObject bulletSpawned = Instantiate(prefab);
         bulletSpawned.transform.position = this.transform.position;
-
+        refGM.nProjectiles--;
+        refGM.fillPower.GetComponent<Image>().fillAmount -= .1f;
+        refGM.nProjectilesText.text = refGM.nProjectiles.ToString();
         refBullet = FindObjectOfType<Bullet>();
         refBullet.delKillPig = KillPig;
     }
