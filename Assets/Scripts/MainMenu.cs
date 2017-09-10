@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class MainMenu : MonoBehaviour
     // Delegato chiamato quando si sceglie un determinato tracciato
     public Action<string> delChoosedTrack;
     public Action<string> delChoosedPlayer;
- 
+
+    [SerializeField]
+    Image fadeImage;
+
 
     private void Update()
     {
@@ -25,15 +29,16 @@ public class MainMenu : MonoBehaviour
                 delChoosedPlayer(blinkingObject.name);
                 playerPool.SetActive(false);
                 Debug.Log(blinkingObject.name);
-                circuitPool.SetActive(true);
+                StartFadeOut();
+                //circuitPool.SetActive(true);
             }
             // cliccando su un circuito lancio il delegato e cambio scena
-            else if (blinkingObject.CompareTag("Circuit"))
-            {
-                Debug.Log(blinkingObject.name);
-                delChoosedTrack(blinkingObject.name);
-                SceneManager.LoadScene(blinkingObject.name);
-            }
+            //else if (blinkingObject.CompareTag("Circuit"))
+            //{
+            //    Debug.Log(blinkingObject.name);
+            //    delChoosedTrack(blinkingObject.name);
+            //    SceneManager.LoadScene(blinkingObject.name);
+            //}
         }
     }
 
@@ -52,5 +57,40 @@ public class MainMenu : MonoBehaviour
         {
             blinkingObject = null;
         }
+    }
+
+
+    public void CharSelected ()
+    {
+        StartFadeOut();
+
+    }
+
+    private void StartFadeOut()
+    {
+        //devo rimuovere i tasti "CIRCUITO" e iniziare il gioco
+        fadeImage.raycastTarget = true;
+        StartCoroutine(fadeOut());
+    }
+
+
+    IEnumerator fadeOut()
+    {
+        while (fadeImage.color.a < 0.99f)
+        {
+            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 1f), Time.deltaTime * 2);
+            print(fadeImage.color);
+            yield return new WaitForEndOfFrame();
+        }
+        fadeImage.color = new Color(0, 0, 0, 1f);
+        StartLevel();
+    }
+
+
+    private void StartLevel()
+    {
+        //data.SelectedPlayer = int.Parse(SelectedPlayer.Split('r')[1]) - 1;
+        //data.SelectedCircuit = int.Parse(SelectedCircuit.Split('t')[1]) - 1;
+        SceneManager.LoadScene("Circuit1");
     }
 }
