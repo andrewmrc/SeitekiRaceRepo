@@ -50,13 +50,16 @@ public class GameManager : MonoBehaviour
         refInv = FindObjectOfType<InvincibilitySphere>();
         refCP.delGameOver = GameOver;
         refCP.delFinishLevel = FinishedLevel;
-        refCP.delCondom = Condom;
-        refCP.delBat = Bat;
-        refCP.delHandcuff = Handcuff;
-        refCP.delMouth = Mouth;
-        refCP.delMuzzle = Muzzle;
-        refCP.delPill = Pill;
-        refCP.delUnderwear = Underwear;
+        //refCP.delCondom = Condom;
+        //refCP.delBat = Bat;
+        //refCP.delHandcuff = Handcuff;
+        //refCP.delMouth = Mouth;
+        //refCP.delMuzzle = Muzzle;
+        //refCP.delPill = Pill;
+        //refCP.delUnderwear = Underwear;
+        refCP.delBonus = Bonus;
+        refCP.delMalus = Malus;
+       
         refCP.delRecharge = RechargeProjectiles;
         textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
         initialY = textScorePlayer.transform.localPosition.y;
@@ -217,6 +220,22 @@ public class GameManager : MonoBehaviour
     }
 
     #region DelegatesMethods
+
+    //Handle Bonus
+    private void Bonus(int _value)
+    {
+        currentScore += _value;
+        StartCoroutine(FeedbackBonusCO(_value));
+    }
+
+
+    //Handle Malus
+    private void Malus(int _value)
+    {
+        currentScore -= _value;
+        StartCoroutine(FeedbackMalusCO(_value));
+    }
+
 
     // Recharge Projectiles
     private void RechargeProjectiles(int nP)
