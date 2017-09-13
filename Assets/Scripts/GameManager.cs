@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
     // Method called by button for restart scene
     public void Restart()
     {
-        SceneManager.LoadScene("Circuit1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //Time.timeScale = 1;
     }
 

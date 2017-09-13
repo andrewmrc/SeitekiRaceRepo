@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject blinkingObject, playerPool, circuitPool;
+    public GameObject blinkingObject, playerPool, circuitPool, charPanel, circuitPanel, charSelectText, circuitSelectText;
+    int levelIndex;
 
     // Delegato chiamato quando si sceglie un determinato tracciato
     public Action<string> delChoosedTrack;
@@ -62,9 +63,22 @@ public class MainMenu : MonoBehaviour
 
     public void CharSelected ()
     {
+        //salvarsi quale personaggio è stato scelto
+        charPanel.SetActive(false);
+        circuitPanel.SetActive(true);
+        charSelectText.SetActive(false);
+        circuitSelectText.SetActive(true);
+    }
+
+
+    public void CircuitSelected(int levelChosen)
+    {
+        levelIndex = levelChosen;
+
         StartFadeOut();
 
     }
+
 
     private void StartFadeOut()
     {
@@ -91,6 +105,6 @@ public class MainMenu : MonoBehaviour
     {
         //data.SelectedPlayer = int.Parse(SelectedPlayer.Split('r')[1]) - 1;
         //data.SelectedCircuit = int.Parse(SelectedCircuit.Split('t')[1]) - 1;
-        SceneManager.LoadScene("Circuit1");
+        SceneManager.LoadScene(levelIndex);
     }
 }
