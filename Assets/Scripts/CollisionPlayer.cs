@@ -68,7 +68,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Handcuff")
         {
             //delHandcuff(300, this.gameObject.name);
-            delBonus(300);
+            delMalus(300);
             Destroy(collision.gameObject);
             audioSource.Play();
         }

@@ -130,9 +130,10 @@ public class GameManager : MonoBehaviour
     // Method called to return in main menu
     public void ReturnToMainMenu()
     {
-        //SceneManager.LoadScene("MainMenu");
+        
         Time.timeScale = 1;
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
+        //Application.Quit();
 
     }
 
