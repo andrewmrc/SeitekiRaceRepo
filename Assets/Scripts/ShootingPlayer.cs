@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ShootingPlayer : MonoBehaviour
 {
@@ -54,9 +56,21 @@ public class ShootingPlayer : MonoBehaviour
         refBullet.delKillPig = KillPig;
     }
 
-    private void KillPig(int _value)
+    private void KillPig(GameObject pig)
     {
         //refGM.currentScore += _value;
         //StartCoroutine(refGM.FeedbackBonusCO(_value));
+        StartCoroutine(HandleKillPig(pig));
     }
+
+    private IEnumerator HandleKillPig(GameObject pig)
+    {
+        pig.GetComponent<BoxCollider>().enabled = false;
+        pig.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        pig.transform.GetChild(2).gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        //pig.SetActive(false);
+        Destroy(pig);
+    }
+
 }

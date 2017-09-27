@@ -5,7 +5,7 @@ using System;
 public class Bullet : MonoBehaviour
 {
     public byte speedBullet;
-    public Action<int> delKillPig;
+    public Action<GameObject> delKillPig;
     private void Awake()
     {
         StartCoroutine(DestroyByTimeCO());
@@ -31,9 +31,13 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag == "Dick Pig")
         {
-            delKillPig(100);
-            Destroy(collision.gameObject);
+            delKillPig(collision.gameObject);
+
+            //Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
+
+
+
 }
