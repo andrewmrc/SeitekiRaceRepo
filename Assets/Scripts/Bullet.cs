@@ -18,15 +18,17 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator DestroyByTimeCO()
     {
-        yield return new WaitForSeconds(1f);
-        Destroy(this.gameObject);
+        yield return new WaitForSeconds(1.5f);
+        gameObject.Recycle();
+        //Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.Recycle();
         }
 
         if (collision.gameObject.tag == "Dick Pig")
@@ -34,7 +36,8 @@ public class Bullet : MonoBehaviour
             delKillPig(collision.gameObject);
 
             //Destroy(collision.gameObject);
-            Destroy(gameObject);
+            gameObject.Recycle();
+            //Destroy(gameObject);
         }
     }
 

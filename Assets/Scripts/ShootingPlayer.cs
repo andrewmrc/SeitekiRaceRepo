@@ -46,8 +46,9 @@ public class ShootingPlayer : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bulletSpawned = Instantiate(prefab);
-        bulletSpawned.transform.position = this.transform.position;
+        //GameObject bulletSpawned = Instantiate(prefab);
+        GameObject bulletSpawned = prefab.Spawn(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.Euler(this.transform.rotation.x, 180, this.transform.position.z)) as GameObject;
+        //bulletSpawned.transform.position = this.transform.position;
         newAS.Play();
         refGM.nProjectiles--;
         refGM.fillPower.GetComponent<Image>().fillAmount -= .1f;
@@ -69,8 +70,8 @@ public class ShootingPlayer : MonoBehaviour
         pig.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         pig.transform.GetChild(2).gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        //pig.SetActive(false);
-        Destroy(pig);
+        pig.SetActive(false);
+        //Destroy(pig);
     }
 
 }

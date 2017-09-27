@@ -15,16 +15,20 @@ public class EnemyBehaviour : MonoBehaviour {
             health--;
             if (health == 0)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
-            StartCoroutine(DecreaseHealth());
+            if (this.gameObject.activeSelf == true)
+            {
+                StartCoroutine(DecreaseHealth());
+            }
         }
     }
 
 
     private IEnumerator DecreaseHealth()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         this.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 

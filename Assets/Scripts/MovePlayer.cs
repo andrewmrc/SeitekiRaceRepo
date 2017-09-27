@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
 
     public bool left, right;
 
-    float offsetValue = 0.2f;
+    float offsetValue = 0.25f;
 
 
     private void Start()
