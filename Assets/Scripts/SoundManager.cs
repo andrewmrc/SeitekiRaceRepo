@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
     private MovePlayer refMP;
     private GameManager refGM;
     public AudioTrackClass clipList;
-    public AudioClip[] audioClipArray;
+    public List<AudioClip> currentAudioClipList = new List<AudioClip>();
     public Transform[] laneArray = new Transform[5];
     public AudioSource audioSoundManager;
 
@@ -26,6 +26,10 @@ public class SoundManager : MonoBehaviour
         laneArray[3] = refGM.lane_less_1;
         laneArray[4] = refGM.lane_less_2;
 
+        //Inserisci una traccia audi random come principale del livello
+        SelectRandomAudioTrack();
+
+        //Applica una clip audio per ogni tracciato
         SetAudioClip();
     }
 
@@ -122,13 +126,51 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+
+    public void SelectRandomAudioTrack()
+    {
+        //estrae random da 1 a 3
+        int randomTrack = Random.Range(0, 3);
+        Debug.Log(randomTrack);
+
+        //in base al numero random prende le audioclip da una diversa tracklist
+        switch (randomTrack)
+        {
+            case 0:
+                //ciclo for che prende la traccia corrispondente al numero precedentemente uscito random e la inserisce come currentAudioClipList
+                for (int i = 0; i < clipList.audioClip_Track1.Length; i++)
+                {
+                    currentAudioClipList.Add(clipList.audioClip_Track1[i]);
+
+                }
+                break;
+            case 1:
+                //ciclo for che prende la traccia corrispondente al numero precedentemente uscito random e la inserisce come currentAudioClipList
+                for (int i = 0; i < clipList.audioClip_Track2.Length; i++)
+                {
+                    currentAudioClipList.Add(clipList.audioClip_Track2[i]);
+
+                }
+                break;
+            case 2:
+                //ciclo for che prende la traccia corrispondente al numero precedentemente uscito random e la inserisce come currentAudioClipList
+                for (int i = 0; i < clipList.audioClip_Track3.Length; i++)
+                {
+                    currentAudioClipList.Add(clipList.audioClip_Track3[i]);
+
+                }
+                break;
+        }
+    }
+
+
     public void SetAudioClip()
     {
         foreach (var lane in laneArray)
         {
             for (int i = currIndexAudioClipArray; i < currIndexAudioClipArray + 1; i++)
             {
-                lane.GetComponent<AudioSource>().clip = audioClipArray[i];
+                lane.GetComponent<AudioSource>().clip = currentAudioClipList[i];
                 lane.GetComponent<AudioSource>().Play();
             }
             currIndexAudioClipArray++;

@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
     {
         while (Time.timeScale > 0)
         {
-            currentScore += ((int)refMP.transform.position.z * -1) * ((int)refMP.speed / 10);
+            currentScore += (-(int)refMP.transform.position.z / 10) * ((int)refMP.speed / 10);
             scoreGO.text = "Your score: " + currentScore.ToString();
             scoreFL.text = "Your final score: " + currentScore.ToString();
             yield return new WaitForSecondsRealtime(.1f);
