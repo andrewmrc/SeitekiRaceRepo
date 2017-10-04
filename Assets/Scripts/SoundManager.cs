@@ -49,12 +49,15 @@ public class SoundManager : MonoBehaviour
                 if (_on)
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_1));
+                    laneArray[1].GetComponent<MeshRenderer>().material.color = Color.blue;
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_1));
+                    laneArray[1].GetComponent<MeshRenderer>().material.color = Color.white;
+
                 }
-                
+
 
                 //StartCoroutine(DecreaseVolumeCO(lane_0));
                 //StartCoroutine(DecreaseVolumeCO(lane_2));
@@ -65,10 +68,14 @@ public class SoundManager : MonoBehaviour
                 if (_on)
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_2));
+                    laneArray[2].GetComponent<MeshRenderer>().material.color = Color.green;
+
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_2));
+                    laneArray[2].GetComponent<MeshRenderer>().material.color = Color.white;
+
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
@@ -80,10 +87,14 @@ public class SoundManager : MonoBehaviour
                 if (_on)
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_less_1));
+                    laneArray[3].GetComponent<MeshRenderer>().material.color = Color.yellow;
+
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_less_1));
+                    laneArray[3].GetComponent<MeshRenderer>().material.color = Color.white;
+
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
@@ -96,10 +107,13 @@ public class SoundManager : MonoBehaviour
                 if (_on)
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_less_2));
+                    laneArray[4].GetComponent<MeshRenderer>().material.color = Color.red;
+
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_less_2));
+                    laneArray[4].GetComponent<MeshRenderer>().material.color = Color.white;
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
