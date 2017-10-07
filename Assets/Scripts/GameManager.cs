@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public int FramesPerSec { get; protected set; }
     public bool pickup;
 
+    GameDataTransfer refGDT;
 
     //Variabili relative allo shooting
     public int nProjectiles = 10;
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
     // Assign delegates to their methods
     private void Awake()
     {
+        refGDT = FindObjectOfType<GameDataTransfer>();
+        SetupChar();
         nProjectilesText.text = nProjectiles.ToString();
         Time.timeScale = 0;
         StartCoroutine(StartCounterCO());
@@ -68,6 +71,30 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(FPS());
     }
+
+
+    public void SetupChar()
+    {
+        int charIndex = refGDT.SelectedPlayer;
+
+        switch (charIndex)
+        {
+            case 0:
+                //Il personaggio scelto è il pene quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
+
+
+                break;
+            case 1:
+                //Il personaggio scelto è la vagina quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
+
+                break;
+            case -1:
+                //Il personaggio scelto è il culo quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
+
+                break;
+        }
+    }
+
 
     private void Update()
     {

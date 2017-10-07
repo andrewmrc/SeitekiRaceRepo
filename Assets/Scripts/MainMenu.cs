@@ -61,9 +61,11 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    public void CharSelected ()
+    public void CharSelected (int charIndex)
     {
         //salvarsi quale personaggio è stato scelto
+        GameDataTransfer dataObject = FindObjectOfType<GameDataTransfer>();
+        dataObject.SelectedPlayer = charIndex;
         charPanel.SetActive(false);
         circuitPanel.SetActive(true);
         charSelectText.SetActive(false);
