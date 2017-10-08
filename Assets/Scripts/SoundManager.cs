@@ -26,6 +26,12 @@ public class SoundManager : MonoBehaviour
         laneArray[3] = refGM.lane_less_1;
         laneArray[4] = refGM.lane_less_2;
 
+        //spegni le lane secondarie
+        laneArray[1].transform.GetChild(0).gameObject.SetActive(false);
+        laneArray[2].transform.GetChild(0).gameObject.SetActive(false);
+        laneArray[3].transform.GetChild(0).gameObject.SetActive(false);
+        laneArray[4].transform.GetChild(0).gameObject.SetActive(false);
+
         //Inserisci una traccia audi random come principale del livello
         SelectRandomAudioTrack();
 
@@ -50,12 +56,15 @@ public class SoundManager : MonoBehaviour
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_1));
                     laneArray[1].GetComponent<MeshRenderer>().material.color = Color.blue;
+                    laneArray[1].transform.GetChild(0).gameObject.SetActive(true);
+                    laneArray[1].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.blue;
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_1));
                     laneArray[1].GetComponent<MeshRenderer>().material.color = Color.white;
-
+                    laneArray[1].transform.GetChild(0).gameObject.SetActive(false);
+                    laneArray[1].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.white;
                 }
 
 
@@ -69,13 +78,15 @@ public class SoundManager : MonoBehaviour
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_2));
                     laneArray[2].GetComponent<MeshRenderer>().material.color = Color.green;
-
+                    laneArray[2].transform.GetChild(0).gameObject.SetActive(true);
+                    laneArray[2].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.green;
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_2));
                     laneArray[2].GetComponent<MeshRenderer>().material.color = Color.white;
-
+                    laneArray[2].transform.GetChild(0).gameObject.SetActive(false);
+                    laneArray[2].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.white;
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
@@ -88,13 +99,15 @@ public class SoundManager : MonoBehaviour
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_less_1));
                     laneArray[3].GetComponent<MeshRenderer>().material.color = Color.yellow;
-
+                    laneArray[3].transform.GetChild(0).gameObject.SetActive(true);
+                    laneArray[3].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.yellow;
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_less_1));
                     laneArray[3].GetComponent<MeshRenderer>().material.color = Color.white;
-
+                    laneArray[3].transform.GetChild(0).gameObject.SetActive(false);
+                    laneArray[3].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.white;
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));
@@ -108,12 +121,15 @@ public class SoundManager : MonoBehaviour
                 {
                     StartCoroutine(IncreaseVolumeCO(refGM.lane_less_2));
                     laneArray[4].GetComponent<MeshRenderer>().material.color = Color.red;
-
+                    laneArray[4].transform.GetChild(0).gameObject.SetActive(true);
+                    laneArray[4].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.red;
                 }
                 else
                 {
                     StartCoroutine(DecreaseVolumeCO(refGM.lane_less_2));
                     laneArray[4].GetComponent<MeshRenderer>().material.color = Color.white;
+                    laneArray[4].transform.GetChild(0).gameObject.SetActive(false);
+                    laneArray[4].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.white;
                 }
 
                 //StartCoroutine(DecreaseVolumeCO(lane_1));

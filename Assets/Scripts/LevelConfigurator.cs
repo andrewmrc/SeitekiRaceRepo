@@ -22,7 +22,7 @@ public class LevelConfigurator : MonoBehaviour {
 
     public GameObject playerPenis;
     public GameObject playerVagina;
-    public GameObject playerAss;
+    //public GameObject playerAss;
 
     GameDataTransfer refGDT;
 
@@ -52,21 +52,21 @@ public class LevelConfigurator : MonoBehaviour {
                 iconBarObject.GetComponent<Image>().sprite = penisIconBar;
                 playerPenis.SetActive(true);
                 playerVagina.SetActive(false);
-                playerAss.SetActive(false);
+                //playerAss.SetActive(false);
 
                 break;
             case 1:
                 //Il personaggio scelto è la vagina quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
                 iconBarObject.GetComponent<Image>().sprite = vaginaIconBar;
                 playerVagina.SetActive(true);
-                playerAss.SetActive(false);
+                //playerAss.SetActive(false);
                 playerPenis.SetActive(false);
 
                 break;
             case -1:
                 //Il personaggio scelto è il culo quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
                 iconBarObject.GetComponent<Image>().sprite = assIconBar;
-                playerAss.SetActive(true);
+                //playerAss.SetActive(true);
                 playerVagina.SetActive(false);
                 playerPenis.SetActive(false);
 
