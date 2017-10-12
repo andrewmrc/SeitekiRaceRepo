@@ -22,7 +22,7 @@ public class LevelConfigurator : MonoBehaviour {
 
     public GameObject playerPenis;
     public GameObject playerVagina;
-    //public GameObject playerAss;
+    public GameObject playerAss;
 
 
     public List<GameObject> bulletInScene = new List<GameObject>();
@@ -55,20 +55,15 @@ public class LevelConfigurator : MonoBehaviour {
                 iconBarObject.GetComponent<Image>().sprite = penisIconBar;
                 playerPenis.SetActive(true);
                 playerVagina.SetActive(false);
-                //playerAss.SetActive(false);
+                playerAss.SetActive(false);
 
                 break;
             case 1:
                 //Il personaggio scelto è la vagina quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
                 iconBarObject.GetComponent<Image>().sprite = vaginaIconBar;
                 playerVagina.SetActive(true);
-                //playerAss.SetActive(false);
+                playerAss.SetActive(false);
                 playerPenis.SetActive(false);
-
-                //foreach (var bulletRecharge in bulletInScene)
-                //{
-                //    GameObject newRechargeItem = Instantiate(vaginaRecharge, new Vector3(bulletRecharge.transform.position.x, vaginaRecharge.transform.position.y, bulletRecharge.transform.position.z), Quaternion.identity);
-                //}
 
                 for (int i = 0; i < bulletInScene.Count; i++)
                 {
@@ -83,9 +78,13 @@ public class LevelConfigurator : MonoBehaviour {
             case -1:
                 //Il personaggio scelto è il culo quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
                 iconBarObject.GetComponent<Image>().sprite = assIconBar;
-                //playerAss.SetActive(true);
+                iconBarObject.GetComponent<RectTransform>().sizeDelta = new Vector2(40f, 30f);
+                playerAss.SetActive(true);
                 playerVagina.SetActive(false);
                 playerPenis.SetActive(false);
+
+
+                Debug.Log("ASS SETUP!");
 
                 break;
         }
