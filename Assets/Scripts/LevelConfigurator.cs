@@ -15,34 +15,37 @@ public class LevelConfigurator : MonoBehaviour {
     public Sprite vaginaUI;
     public Sprite assUI;
 
-    public Mesh penisBullet;
-    public Mesh vaginaBullet;
-    public Mesh assBullet;
+    public GameObject penisRecharge;
+    public GameObject vaginaRecharge;
+    public GameObject assRecharge;
 
 
     public GameObject playerPenis;
     public GameObject playerVagina;
     //public GameObject playerAss;
 
+
+    public List<GameObject> bulletInScene = new List<GameObject>();
+
+
     GameDataTransfer refGDT;
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         refGDT = FindObjectOfType<GameDataTransfer>();
         if (refGDT != null)
         {
+            //Trova tutti i bullet in scena precedentemente posizionati
+            bulletInScene.AddRange(GameObject.FindGameObjectsWithTag("Bullet"));
             SetupChar();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
     public void SetupChar()
     {
+        Debug.Log("SETUP CHAR!");
         int charIndex = refGDT.SelectedPlayer;
 
         switch (charIndex)
@@ -61,6 +64,20 @@ public class LevelConfigurator : MonoBehaviour {
                 playerVagina.SetActive(true);
                 //playerAss.SetActive(false);
                 playerPenis.SetActive(false);
+
+                //foreach (var bulletRecharge in bulletInScene)
+                //{
+                //    GameObject newRechargeItem = Instantiate(vaginaRecharge, new Vector3(bulletRecharge.transform.position.x, vaginaRecharge.transform.position.y, bulletRecharge.transform.position.z), Quaternion.identity);
+                //}
+
+                for (int i = 0; i < bulletInScene.Count; i++)
+                {
+                    GameObject newRechargeItem = Instantiate(vaginaRecharge, new Vector3(bulletInScene[i].transform.position.x, vaginaRecharge.transform.position.y, bulletInScene[i].transform.position.z), Quaternion.Euler(-90, 180, 0));
+                    bulletInScene[i].SetActive(false);
+                    //Debug.Log("INSTANTIATE NEW RECHARGE ITEM: " + i);
+                }
+
+                Debug.Log("VAGINA SETUP!");
 
                 break;
             case -1:
