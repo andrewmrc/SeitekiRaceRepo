@@ -19,6 +19,8 @@ public class CollisionPlayer : MonoBehaviour
     public Action<int> delBonus;
     public Action<int> delMalus;
 
+    public Action<int> delSpecialItem;
+
     private AudioSource audioSource;
     private GameManager refGM;
 
@@ -103,6 +105,11 @@ public class CollisionPlayer : MonoBehaviour
             delBonus(900);
             Destroy(collision.gameObject);
             audioSource.Play();
+        }
+
+        if (collision.gameObject.tag == "Special")
+        {
+            delSpecialItem(1);
         }
 
         if (collision.gameObject.tag == "Dick Pig")

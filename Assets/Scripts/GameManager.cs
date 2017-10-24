@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public int FramesPerSec { get; protected set; }
     public bool pickup;
 
+    //Oggetti Bonus
+    public int specialItemCount = 0;
+
     //Variabili relative allo shooting
     public int nProjectiles = 10;
 
@@ -58,7 +61,9 @@ public class GameManager : MonoBehaviour
         //refCP.delUnderwear = Underwear;
         refCP.delBonus = Bonus;
         refCP.delMalus = Malus;
-       
+
+        refCP.delSpecialItem = Special;
+
         refCP.delRecharge = RechargeProjectiles;
         textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
         initialY = textScorePlayer.transform.localPosition.y;
@@ -145,7 +150,7 @@ public class GameManager : MonoBehaviour
     {
         while (Time.timeScale > 0)
         {
-            currentScore += (-(int)refMP.transform.position.z / 10) * ((int)refMP.speed / 10);
+            currentScore += (-(int)refMP.transform.position.z / 10);// * ((int)refMP.speed / 10);
             scoreGO.text = "Your score: " + currentScore.ToString();
             scoreFL.text = "Your final score: " + currentScore.ToString();
             yield return new WaitForSecondsRealtime(.1f);
@@ -181,7 +186,7 @@ public class GameManager : MonoBehaviour
         //fa muovere il text score verso l'alto
         while (textScorePlayer.transform.localPosition.y <= 25f || !pickup)
         {
-            Debug.Log("CallBonus");
+            //Debug.Log("CallBonus");
             textScorePlayer.transform.localPosition += new Vector3(0f, .5f, 0f);
             textScorePlayer.text = "+ " + _value.ToString();
             yield return null;
@@ -240,6 +245,13 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //Handle Special Item
+    private void Special(int _value)
+    {
+        specialItemCount += _value;
+    }
+
+
     // Recharge Projectiles
     private void RechargeProjectiles(int nP)
     {
@@ -270,6 +282,11 @@ public class GameManager : MonoBehaviour
     // Stop all music, active panel Game Over and play sound
     private void GameOver(bool _on)
     {
+        if(specialItemCount == 3)
+        {
+            currentScore += 50000;
+        }
+
         Time.timeScale = 0;
 
         for (int i = 0; i < refSM.laneArray.Length; i++)
