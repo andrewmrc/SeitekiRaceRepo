@@ -17,6 +17,18 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     Image fadeImage;
 
+    public GameObject level2Button;
+    public GameObject level3Button;
+    public GameObject level4Button;
+    public GameObject level5Button;
+    public GameObject level6Button;
+
+
+    public void Start()
+    {
+        SetupLevels();
+        CheckLevels();
+    }
 
     private void Update()
     {
@@ -108,5 +120,118 @@ public class MainMenu : MonoBehaviour
         //data.SelectedPlayer = int.Parse(SelectedPlayer.Split('r')[1]) - 1;
         //data.SelectedCircuit = int.Parse(SelectedCircuit.Split('t')[1]) - 1;
         SceneManager.LoadScene(levelIndex);
+    }
+
+
+    //Metodo chiamato per controllare e inizializzare i valori delle variabili corrispondenti ai livelli -> 0 livello bloccato / 1 livello sbloccato
+    public void SetupLevels ()
+    {
+        if (!PlayerPrefs.HasKey("lvl_2"))
+        {
+            PlayerPrefs.SetInt("lvl_2", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("lvl_3"))
+        {
+            PlayerPrefs.SetInt("lvl_3", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("lvl_4"))
+        {
+            PlayerPrefs.SetInt("lvl_4", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("lvl_5"))
+        {
+            PlayerPrefs.SetInt("lvl_5", 0);
+        }
+
+        if (!PlayerPrefs.HasKey("lvl_6"))
+        {
+            PlayerPrefs.SetInt("lvl_6", 0);
+        }
+    }
+
+
+    //Controlla e in caso sblocca la possibilità di selezionare i livelli in base al valore nei player prefs
+    public void CheckLevels ()
+    {
+        if (PlayerPrefs.HasKey("lvl_2"))
+        {
+            if(PlayerPrefs.GetInt("lvl_2") == 1)
+            {
+                level2Button.GetComponent<Button>().interactable = true;
+            } else
+            {
+                level2Button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("lvl_3"))
+        {
+            if (PlayerPrefs.GetInt("lvl_3") == 1)
+            {
+                level3Button.GetComponent<Button>().interactable = true;
+            } else
+            {
+                level3Button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("lvl_4"))
+        {
+            if (PlayerPrefs.GetInt("lvl_4") == 1)
+            {
+                level4Button.GetComponent<Button>().interactable = true;
+            } else
+            {
+                level4Button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("lvl_5"))
+        {
+            if (PlayerPrefs.GetInt("lvl_5") == 1)
+            {
+                level5Button.GetComponent<Button>().interactable = true;
+            } else
+            {
+                level5Button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("lvl_6"))
+        {
+            if (PlayerPrefs.GetInt("lvl_6") == 1)
+            {
+                level6Button.GetComponent<Button>().interactable = true;
+            } else
+            {
+                level6Button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+    }
+
+
+    //Developer Method per testare i livelli senza doverli sbloccare prima
+    public void UnlockLevels()
+    {
+        PlayerPrefs.SetInt("lvl_2", 1);
+        PlayerPrefs.SetInt("lvl_3", 1);
+        PlayerPrefs.SetInt("lvl_4", 1);
+        PlayerPrefs.SetInt("lvl_5", 1);
+        PlayerPrefs.SetInt("lvl_6", 1);
+        CheckLevels();
+    }
+
+    public void LockLevels ()
+    {
+        PlayerPrefs.SetInt("lvl_2", 0);
+        PlayerPrefs.SetInt("lvl_3", 0);
+        PlayerPrefs.SetInt("lvl_4", 0);
+        PlayerPrefs.SetInt("lvl_5", 0);
+        PlayerPrefs.SetInt("lvl_6", 0);
+        CheckLevels();
     }
 }

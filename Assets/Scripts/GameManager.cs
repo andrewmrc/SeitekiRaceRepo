@@ -34,11 +34,19 @@ public class GameManager : MonoBehaviour
     public int FramesPerSec { get; protected set; }
     public bool pickup;
 
+
     //Oggetti Bonus
     public int specialItemCount = 0;
 
     //Variabili relative allo shooting
     public int nProjectiles = 10;
+
+    [Space(10)]
+
+    //Serve a identificare il livello corrente per salvare correttamente i player prefs
+    public int levelKeyIdentifier;
+
+
 
     // Assign delegates to their methods
     private void Awake()
@@ -277,7 +285,44 @@ public class GameManager : MonoBehaviour
 
         panelFinishedLevel.SetActive(_on);
         panelFinishedLevel.GetComponent<AudioSource>().Play();
+
+
+        //Salva il livello come completato nei player prefs
+        SetLevelCompleted();
     }
+
+
+    //Setta nei player prefs il valore del proprio livello a 1
+    private void SetLevelCompleted()
+    {
+        switch (levelKeyIdentifier)
+        {
+            case 2:
+                PlayerPrefs.SetInt("lvl_2", 1);
+                break;
+
+            case 3:
+                PlayerPrefs.SetInt("lvl_3", 1);
+                break;
+
+            case 4:
+                PlayerPrefs.SetInt("lvl_4", 1);
+                break;
+
+            case 5:
+                PlayerPrefs.SetInt("lvl_5", 1);
+                break;
+
+            case 6:
+                PlayerPrefs.SetInt("lvl_6", 1);
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
 
     // Stop all music, active panel Game Over and play sound
     private void GameOver(bool _on)
