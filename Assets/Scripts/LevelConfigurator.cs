@@ -83,6 +83,12 @@ public class LevelConfigurator : MonoBehaviour {
                 playerVagina.SetActive(false);
                 playerPenis.SetActive(false);
 
+                for (int i = 0; i < bulletInScene.Count; i++)
+                {
+                    GameObject newRechargeItem = Instantiate(assRecharge, new Vector3(bulletInScene[i].transform.position.x, assRecharge.transform.position.y, bulletInScene[i].transform.position.z), Quaternion.Euler(0, 0, -90));
+                    bulletInScene[i].SetActive(false);
+                    //Debug.Log("INSTANTIATE NEW RECHARGE ITEM: " + i);
+                }
 
                 Debug.Log("ASS SETUP!");
 

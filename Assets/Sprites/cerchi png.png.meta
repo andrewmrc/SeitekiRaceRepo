@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3268bcece46fa8b48bc6b17a8bf0a692
-timeCreated: 1490822054
+timeCreated: 1510332773
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -111,10 +111,10 @@ TextureImporter:
       name: cerchi png_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 502
-        width: 472
-        height: 472
+        x: 27
+        y: 496
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,10 +124,10 @@ TextureImporter:
       name: cerchi png_1
       rect:
         serializedVersion: 2
-        x: 535
-        y: 504
-        width: 472
-        height: 472
+        x: 529
+        y: 498
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: cerchi png_2
       rect:
         serializedVersion: 2
-        x: 1031
-        y: 502
-        width: 472
-        height: 472
+        x: 1025
+        y: 496
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: cerchi png_3
       rect:
         serializedVersion: 2
-        x: 12
-        y: 11
-        width: 472
-        height: 472
+        x: 6
+        y: 5
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: cerchi png_4
       rect:
         serializedVersion: 2
-        x: 514
-        y: 13
-        width: 472
-        height: 472
+        x: 508
+        y: 7
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: cerchi png_5
       rect:
         serializedVersion: 2
-        x: 1010
-        y: 11
-        width: 472
-        height: 472
+        x: 1004
+        y: 5
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

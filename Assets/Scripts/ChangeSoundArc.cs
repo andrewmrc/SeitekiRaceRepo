@@ -6,7 +6,7 @@ using System;
 public class ChangeSoundArc : MonoBehaviour
 {
     SoundManager refSM;
-    CollisionPlayer refCP;
+    public CollisionPlayer refCP;
 
     private void Awake()
     {
