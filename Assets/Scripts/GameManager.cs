@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform lane_0, lane_1, lane_2, lane_less_1, lane_less_2;
 
     public List<Sprite> counterImage = new List<Sprite>();
+    public AudioClip counterSound;
 
     public float initialY;
 
@@ -120,12 +121,15 @@ public class GameManager : MonoBehaviour
         while (Time.timeScale == 0)
         {
             startCounter.overrideSprite = counterImage[2];
+            startCounter.GetComponent<AudioSource>().PlayOneShot(counterSound);
             //startCounter.color = Color.green;
             yield return new WaitForSecondsRealtime(1f);
             startCounter.overrideSprite = counterImage[1];
+            startCounter.GetComponent<AudioSource>().PlayOneShot(counterSound);
             //startCounter.color = Color.red;
             yield return new WaitForSecondsRealtime(1f);
             startCounter.overrideSprite = counterImage[0];
+            startCounter.GetComponent<AudioSource>().PlayOneShot(counterSound);
             //startCounter.color = Color.magenta;
             yield return new WaitForSecondsRealtime(1f);
             startCounter.gameObject.SetActive(false);
