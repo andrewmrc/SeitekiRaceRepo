@@ -200,6 +200,7 @@ public class SoundManager : MonoBehaviour
         {
             for (int i = currIndexAudioClipArray; i < currIndexAudioClipArray + 1; i++)
             {
+                lane.GetComponent<AudioSource>().Stop();
                 lane.GetComponent<AudioSource>().clip = currentAudioClipList[i];
                 lane.GetComponent<AudioSource>().Play();
             }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5b082ca9f33b83f4587be2a6f5f335c5
-timeCreated: 1510334545
+timeCreated: 1510606060
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -108,10 +108,10 @@ TextureImporter:
       name: numeri partenza_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 272
-        width: 979
-        height: 981
+        x: 0
+        y: 0
+        width: 604
+        height: 604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: numeri partenza_1
       rect:
         serializedVersion: 2
-        x: 1014
-        y: 272
-        width: 981
-        height: 981
+        x: 669
+        y: 0
+        width: 604
+        height: 604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: numeri partenza_2
       rect:
         serializedVersion: 2
-        x: 2018
-        y: 272
-        width: 978
-        height: 981
+        x: 1340
+        y: 2
+        width: 604
+        height: 602
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
