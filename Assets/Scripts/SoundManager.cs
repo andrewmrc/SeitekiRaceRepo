@@ -202,9 +202,19 @@ public class SoundManager : MonoBehaviour
             {
                 lane.GetComponent<AudioSource>().Stop();
                 lane.GetComponent<AudioSource>().clip = currentAudioClipList[i];
-                lane.GetComponent<AudioSource>().Play();
+                //lane.GetComponent<AudioSource>().Play();
             }
             currIndexAudioClipArray++;
         }
     }
+
+
+    public void StartPlayAudioClip()
+    {
+        foreach (var lane in laneArray)
+        {
+            lane.GetComponent<AudioSource>().Play();
+        }
+    }
+
 }

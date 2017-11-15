@@ -19,6 +19,7 @@ public class ChangeSoundArc : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             refSM.SetAudioClip();
+            refSM.StartPlayAudioClip();
 
             //Controlla se tutti gli audio sono attivi e in caso chiama il metodo che attiva un bonus
             if(refSM.laneArray[1].GetComponent<AudioSource>().volume > 0){
