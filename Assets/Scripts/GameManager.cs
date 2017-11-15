@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Action<int,bool> delCurrentLane;
 
     public GameObject scorePoint, fillPower;
-    public TextMesh textScorePlayer;
+    public Text textScorePlayer;
     public int currentScore;
     public GameObject shootButton;
 
@@ -74,7 +74,9 @@ public class GameManager : MonoBehaviour
         refCP.delSpecialItem = Special;
 
         refCP.delRecharge = RechargeProjectiles;
-        textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
+        //textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
+        textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+
         initialY = textScorePlayer.transform.localPosition.y;
         textScorePlayer.gameObject.SetActive(false);
         //StartCoroutine(DistanceScore());
@@ -174,8 +176,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator FeedbackBonusCO(float _value)
     {
         //Debug.Log("CallBonus");
-        pickup = false;
-        pickup = true;
+        //pickup = false;
+        //pickup = true;
 
         //Attiva la clip audio
         delCurrentLane(refMP.numLane, true);
@@ -192,54 +194,63 @@ public class GameManager : MonoBehaviour
         //    fillPower.GetComponent<Image>().fillAmount = 0f;
         //}
 
-        GameObject textSpawnedBonus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, -180, textScorePlayer.transform.rotation.z)) as GameObject;
+        GameObject textSpawnedBonus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, 0, textScorePlayer.transform.rotation.z)) as GameObject;
 
-        textSpawnedBonus.transform.SetParent(textScorePlayer.gameObject.transform.parent);
+        textSpawnedBonus.transform.SetParent(panelFinishedLevel.gameObject.transform.parent);
+        textSpawnedBonus.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        textSpawnedBonus.GetComponent<Text>().color = Color.green;
+        textSpawnedBonus.GetComponent<HandleScoreTextUI>().scoreValue = _value;
         textSpawnedBonus.gameObject.SetActive(true);
-        textSpawnedBonus.GetComponent<TextMesh>().color = Color.green;        
+
         //initialY = textScorePlayer.transform.position.y;
 
-        //fa muovere il text score verso l'alto
-        while (textSpawnedBonus.transform.localPosition.y <= 25f || !pickup)
-        {
-            //Debug.Log("CallBonus");
-            textSpawnedBonus.transform.localPosition += new Vector3(0f, .5f, 0f);
-            textSpawnedBonus.GetComponent<TextMesh>().text = "+ " + _value.ToString();
-            yield return null;
-        }
-        textSpawnedBonus.Recycle();
-        pickup = false;
+        ////fa muovere il text score verso l'alto
+        //while (textSpawnedBonus.transform.localPosition.y <= 250f || !pickup)
+        //{
+        //    //Debug.Log("CallBonus");
+        //    textSpawnedBonus.transform.localPosition += new Vector3(0f, 5f, 0f);
+        //    textSpawnedBonus.GetComponent<Text>().text = "+ " + _value.ToString();
+        //    yield return null;
+        //}
+        //textSpawnedBonus.Recycle();
+        //pickup = false;
         //ResetTextScore();
+        yield return null;
     }
 
     // Show red minus score feedback
     public IEnumerator FeedbackMalusCO(float _value)
     {
-        pickup = false;
-        pickup = true;
+        //pickup = false;
+        //pickup = true;
 
         //Disattiva la clip audio
         delCurrentLane(refMP.numLane, false);
 
-        GameObject textSpawnedMalus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, -180, textScorePlayer.transform.rotation.z)) as GameObject;
+        GameObject textSpawnedMalus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, 0, textScorePlayer.transform.rotation.z)) as GameObject;
 
         textSpawnedMalus.transform.SetParent(textScorePlayer.gameObject.transform.parent);
+        textSpawnedMalus.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        textSpawnedMalus.GetComponent<Text>().color = Color.red;
+        textSpawnedMalus.GetComponent<HandleScoreTextUI>().scoreValue = _value;
+        textSpawnedMalus.GetComponent<HandleScoreTextUI>().malus = true;
         textSpawnedMalus.gameObject.SetActive(true);
-        textSpawnedMalus.GetComponent<TextMesh>().color = Color.red;
         fillPower.GetComponent<Image>().fillAmount -= .1f;
+        
 
         //initialY = textScorePlayer.transform.position.y;
 
         //fa muovere il text score verso l'alto
-        while (textSpawnedMalus.transform.localPosition.y <= 25f || !pickup)
-        {
-            textSpawnedMalus.transform.localPosition += new Vector3(0f, .5f, 0f);
-            textSpawnedMalus.GetComponent<TextMesh>().text = "- " + _value.ToString();
-            yield return null;
-        }
-        textSpawnedMalus.Recycle();
-        pickup = false;
+        //while (textSpawnedMalus.transform.localPosition.y <= 250f || !pickup)
+        //{
+        //    textSpawnedMalus.transform.localPosition += new Vector3(0f, 5f, 0f);
+        //    textSpawnedMalus.GetComponent<Text>().text = "- " + _value.ToString();
+        //    yield return null;
+        //}
+        //textSpawnedMalus.Recycle();
+        //pickup = false;
         //ResetTextScore();
+        yield return null;
     }
 
 
