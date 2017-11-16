@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         textScorePlayer.gameObject.SetActive(false);
         //StartCoroutine(DistanceScore());
 
-        StartCoroutine(FPS());
+        //StartCoroutine(FPS());
     }
 
 
@@ -90,13 +90,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         scorePoint.GetComponentInChildren<Text>().text = currentScore.ToString();
-        fpsCounter += (Time.deltaTime - fpsCounter) * .1f;
-        if (!pickup)
-        {
-            StopCoroutine("FeedbackBonusCO");
-            StopCoroutine("FeedbackMalusCO");
-            ResetTextScore();
-        }
+        //fpsCounter += (Time.deltaTime - fpsCounter) * .1f;
+        //if (!pickup)
+        //{
+        //    StopCoroutine("FeedbackBonusCO");
+        //    StopCoroutine("FeedbackMalusCO");
+        //    ResetTextScore();
+        //}
     }
 
 
@@ -173,26 +173,12 @@ public class GameManager : MonoBehaviour
     }
 
     // Show green plus score feedback
-    public IEnumerator FeedbackBonusCO(float _value)
+    public void FeedbackBonusCO(float _value)
     {
         //Debug.Log("CallBonus");
-        //pickup = false;
-        //pickup = true;
 
         //Attiva la clip audio
         delCurrentLane(refMP.numLane, true);
-
-        ////Incrementa il potere per attivare la sfera di invincibilità
-        //if (fillPower.GetComponent<Image>().fillAmount <= 0.9f)
-        //{
-        //    fillPower.GetComponent<Image>().fillAmount += .1f;
-        //}
-        //else
-        //{
-        //    // Set the superpower and reset the fillPower
-        //    StartCoroutine(refInv.IncreaseSizeCO());
-        //    fillPower.GetComponent<Image>().fillAmount = 0f;
-        //}
 
         GameObject textSpawnedBonus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, 0, textScorePlayer.transform.rotation.z)) as GameObject;
 
@@ -202,28 +188,11 @@ public class GameManager : MonoBehaviour
         textSpawnedBonus.GetComponent<HandleScoreTextUI>().scoreValue = _value;
         textSpawnedBonus.gameObject.SetActive(true);
 
-        //initialY = textScorePlayer.transform.position.y;
-
-        ////fa muovere il text score verso l'alto
-        //while (textSpawnedBonus.transform.localPosition.y <= 250f || !pickup)
-        //{
-        //    //Debug.Log("CallBonus");
-        //    textSpawnedBonus.transform.localPosition += new Vector3(0f, 5f, 0f);
-        //    textSpawnedBonus.GetComponent<Text>().text = "+ " + _value.ToString();
-        //    yield return null;
-        //}
-        //textSpawnedBonus.Recycle();
-        //pickup = false;
-        //ResetTextScore();
-        yield return null;
     }
 
     // Show red minus score feedback
-    public IEnumerator FeedbackMalusCO(float _value)
+    public void FeedbackMalusCO(float _value)
     {
-        //pickup = false;
-        //pickup = true;
-
         //Disattiva la clip audio
         delCurrentLane(refMP.numLane, false);
 
@@ -236,21 +205,7 @@ public class GameManager : MonoBehaviour
         textSpawnedMalus.GetComponent<HandleScoreTextUI>().malus = true;
         textSpawnedMalus.gameObject.SetActive(true);
         fillPower.GetComponent<Image>().fillAmount -= .1f;
-        
 
-        //initialY = textScorePlayer.transform.position.y;
-
-        //fa muovere il text score verso l'alto
-        //while (textSpawnedMalus.transform.localPosition.y <= 250f || !pickup)
-        //{
-        //    textSpawnedMalus.transform.localPosition += new Vector3(0f, 5f, 0f);
-        //    textSpawnedMalus.GetComponent<Text>().text = "- " + _value.ToString();
-        //    yield return null;
-        //}
-        //textSpawnedMalus.Recycle();
-        //pickup = false;
-        //ResetTextScore();
-        yield return null;
     }
 
 
@@ -267,7 +222,7 @@ public class GameManager : MonoBehaviour
     private void Bonus(int _value)
     {
         currentScore += _value;
-        StartCoroutine(FeedbackBonusCO(_value));
+        FeedbackBonusCO(_value);
     }
 
 
@@ -275,7 +230,7 @@ public class GameManager : MonoBehaviour
     private void Malus(int _value)
     {
         currentScore -= _value;
-        StartCoroutine(FeedbackMalusCO(_value));
+        FeedbackMalusCO(_value);
     }
 
 
@@ -369,142 +324,142 @@ public class GameManager : MonoBehaviour
         panelGameOver.GetComponent<AudioSource>().Play();
     }
 
-    // Called when take a Condom, change score of value passed by delegate
-    private void Condom(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Vagina":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Ass":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-        }
-    }
+    //// Called when take a Condom, change score of value passed by delegate
+    //private void Condom(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //    }
+    //}
 
-    // Called when take a Bat, change score of value passed by delegate
-    private void Bat(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Vagina":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Ass":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-        }
-    }
+    //// Called when take a Bat, change score of value passed by delegate
+    //private void Bat(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //    }
+    //}
 
-    private void Handcuff(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Vagina":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Ass":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-        }
-    }
+    //private void Handcuff(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //    }
+    //}
 
-    private void Mouth(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Vagina":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Ass":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-        }
-    }
+    //private void Mouth(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //    }
+    //}
 
-    private void Muzzle(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore -= _value;
+    //private void Muzzle(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore -= _value;
 
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Vagina":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Ass":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                print("Dentro Muzzle");
-                break;
-        }
-    }
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            print("Dentro Muzzle");
+    //            break;
+    //    }
+    //}
 
-    private void Underwear(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Vagina":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Ass":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-        }
-    }
+    //private void Underwear(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //    }
+    //}
 
-    private void Pill(int _value, string _name)
-    {
-        switch (_name)
-        {
-            case "Penis":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-            case "Vagina":
-                currentScore += _value;
-                StartCoroutine(FeedbackBonusCO(_value));
-                break;
-            case "Ass":
-                currentScore -= _value;
-                StartCoroutine(FeedbackMalusCO(_value));
-                break;
-        }
-    }
+    //private void Pill(int _value, string _name)
+    //{
+    //    switch (_name)
+    //    {
+    //        case "Penis":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //        case "Vagina":
+    //            currentScore += _value;
+    //            StartCoroutine(FeedbackBonusCO(_value));
+    //            break;
+    //        case "Ass":
+    //            currentScore -= _value;
+    //            StartCoroutine(FeedbackMalusCO(_value));
+    //            break;
+    //    }
+    //}
 
     
     #endregion

@@ -5,7 +5,12 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour {
 
     public float health = 1f;
+    private GameManager refGM;
 
+    private void Awake()
+    {
+        refGM = FindObjectOfType<GameManager>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour {
             if (health == 0)
             {
                 //Destroy(this.gameObject);
+                refGM.FeedbackBonusCO(3000);
                 this.gameObject.SetActive(false);
             }
             if (this.gameObject.activeSelf == true)

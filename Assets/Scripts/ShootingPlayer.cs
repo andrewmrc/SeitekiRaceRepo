@@ -66,6 +66,7 @@ public class ShootingPlayer : MonoBehaviour
 
     private IEnumerator HandleKillPig(GameObject pig)
     {
+        refGM.FeedbackBonusCO(2000);
         pig.GetComponent<BoxCollider>().enabled = false;
         pig.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         pig.transform.GetChild(2).gameObject.SetActive(true);

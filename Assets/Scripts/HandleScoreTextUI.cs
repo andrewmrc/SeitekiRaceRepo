@@ -18,7 +18,7 @@ public class HandleScoreTextUI : MonoBehaviour {
         while (this.transform.localPosition.y <= 250f)
         {
             //Debug.Log("CallBonus");
-            this.transform.localPosition += new Vector3(0f, 5f, 0f);
+            this.transform.localPosition += new Vector3(0f, 4f, 0f);
             if (!malus)
             {
                 this.GetComponent<Text>().text = "+ " + scoreValue.ToString();

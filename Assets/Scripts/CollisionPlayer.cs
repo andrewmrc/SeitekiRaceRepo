@@ -54,7 +54,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Condom")
         {
             //delCondom(250, this.gameObject.name);
-            delBonus(250);
+            delBonus(2500);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -62,7 +62,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Bat")
         {
             //delBat(500, this.gameObject.name);
-            delMalus(500);
+            delMalus(5000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -70,7 +70,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Handcuff")
         {
             //delHandcuff(300, this.gameObject.name);
-            delMalus(300);
+            delMalus(3000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -78,7 +78,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Mouth")
         {
             //delMouth(600, this.gameObject.name);
-            delBonus(600);
+            delBonus(6000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -86,7 +86,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Muzzle")
         {
             //delMuzzle(400, this.gameObject.name);
-            delMalus(400);
+            delMalus(4000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -94,7 +94,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Underwear")
         {
             //delUnderwear(500, this.gameObject.name);
-            delBonus(500);
+            delBonus(5000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
@@ -102,7 +102,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Pill")
         {
             //delPill(900, this.gameObject.name);
-            delBonus(900);
+            delBonus(9000);
             Destroy(collision.gameObject);
             audioSource.Play();
         }
