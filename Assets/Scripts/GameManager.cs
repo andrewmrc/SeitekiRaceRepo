@@ -33,8 +33,9 @@ public class GameManager : MonoBehaviour
     float frequency = 0.5f;
 
     public int FramesPerSec { get; protected set; }
-    public bool pickup;
+    private bool endScore;
 
+    private GameObject fadeOutPanel;
 
     //Oggetti Bonus
     public int specialItemCount = 0;
@@ -82,6 +83,9 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(DistanceScore());
 
         //StartCoroutine(FPS());
+
+        fadeOutPanel = GameObject.FindGameObjectWithTag("FadeOutPanel");
+        fadeOutPanel.GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
     }
 
 
@@ -163,7 +167,7 @@ public class GameManager : MonoBehaviour
     //set it to text in 2 panel of Game Over and Finished Level
     private IEnumerator DistanceScore()
     {
-        while (Time.timeScale > 0)
+        while (!endScore)
         {
             currentScore += (-(int)refMP.transform.position.z / 10);// * ((int)refMP.speed / 10);
             scoreGO.text = "Your score: " + currentScore.ToString();
@@ -209,12 +213,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ResetTextScore()
-    {
-        pickup = false;
-        textScorePlayer.gameObject.SetActive(false);
-        textScorePlayer.transform.localPosition = new Vector3(textScorePlayer.transform.localPosition.x, initialY, textScorePlayer.transform.localPosition.z);
-    }
+    //public void ResetTextScore()
+    //{
+    //    pickup = false;
+    //    textScorePlayer.gameObject.SetActive(false);
+    //    textScorePlayer.transform.localPosition = new Vector3(textScorePlayer.transform.localPosition.x, initialY, textScorePlayer.transform.localPosition.z);
+    //}
 
     #region DelegatesMethods
 
@@ -313,16 +317,31 @@ public class GameManager : MonoBehaviour
             currentScore += 50000;
         }
 
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        nProjectiles = 0;
+        refMP.enabled = false;
+        endScore = true;
 
         for (int i = 0; i < refSM.laneArray.Length; i++)
         {
             refSM.laneArray[i].GetComponent<AudioSource>().Stop();
         }
 
-        panelGameOver.SetActive(_on);
-        panelGameOver.GetComponent<AudioSource>().Play();
+        StartCoroutine(FadeOutPanel());
+        //panelGameOver.SetActive(_on);
+        //panelGameOver.GetComponent<AudioSource>().Play();
     }
+
+
+    private IEnumerator FadeOutPanel()
+    {
+        fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
+        yield return new WaitForSeconds(1f);
+        panelGameOver.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
+    }
+    
 
     //// Called when take a Condom, change score of value passed by delegate
     //private void Condom(int _value, string _name)
