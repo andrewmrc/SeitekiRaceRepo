@@ -10,6 +10,7 @@ public class ShootingPlayer : MonoBehaviour
     private GameManager refGM;
     AudioSource newAS;
     public AudioClip shootingSound;
+    private GameObject shootButton;
 
     private void Awake()
     {
@@ -17,44 +18,57 @@ public class ShootingPlayer : MonoBehaviour
         newAS = gameObject.AddComponent<AudioSource>();
         newAS.spatialBlend = 0;
         newAS.clip = shootingSound;
+        //shootButton = GameObject.FindGameObjectWithTag("ShootButton");
+        //shootButton.GetComponent<Button>().onClick.AddListener(Shoot);
     }
 
     private void Update()
     {
-        if (refGM.nProjectiles > 0) {
-
-            if (Input.GetMouseButtonDown(0))
+        if (!refGM.noShoot)
+        {
+            if (refGM.nProjectiles > 0)
             {
-                Shoot();
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Shoot();
+                }
+
+                //if (Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Moved*/)
+                //{
+                //    Shoot();
+                //}
+
+
+                //for (int i = 0; i < Input.touchCount; ++i)
+                //{
+                //    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                //        Shoot();
+                //}
+
             }
-
-            //if (Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Moved*/)
-            //{
-            //    Shoot();
-            //}
-
-        
-            //for (int i = 0; i < Input.touchCount; ++i)
-            //{
-            //    if (Input.GetTouch(i).phase == TouchPhase.Began)
-            //        Shoot();
-            //}
-
         }
+
 
     }
 
     public void Shoot()
     {
-        //GameObject bulletSpawned = Instantiate(prefab);
-        GameObject bulletSpawned = prefab.Spawn(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.Euler(this.transform.rotation.x, 180, this.transform.position.z)) as GameObject;
-        //bulletSpawned.transform.position = this.transform.position;
-        newAS.Play();
-        refGM.nProjectiles--;
-        refGM.fillPower.GetComponent<Image>().fillAmount -= .1f;
-        refGM.nProjectilesText.text = refGM.nProjectiles.ToString();
-        refBullet = FindObjectOfType<Bullet>();
-        refBullet.delKillPig = KillPig;
+        if (!refGM.noShoot)
+        {
+            if (refGM.nProjectiles > 0)
+            {
+                //GameObject bulletSpawned = Instantiate(prefab);
+                GameObject bulletSpawned = prefab.Spawn(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.Euler(this.transform.rotation.x, 180, this.transform.position.z)) as GameObject;
+                //bulletSpawned.transform.position = this.transform.position;
+                newAS.Play();
+                refGM.nProjectiles--;
+                refGM.fillPower.GetComponent<Image>().fillAmount -= .1f;
+                refGM.nProjectilesText.text = refGM.nProjectiles.ToString();
+                refBullet = FindObjectOfType<Bullet>();
+                refBullet.delKillPig = KillPig;
+            }
+        }
     }
 
     private void KillPig(GameObject pig)

@@ -8,7 +8,7 @@ public class ChangeSoundArc : MonoBehaviour
     SoundManager refSM;
     public CollisionPlayer refCP;
 
-    private void Awake()
+    private void Start()
     {
         refSM = FindObjectOfType<SoundManager>();
         refCP = FindObjectOfType<CollisionPlayer>();

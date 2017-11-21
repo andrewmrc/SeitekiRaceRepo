@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
 
     private GameObject fadeOutPanel;
 
+    private GameObject pauseButton;
+    private GameObject pausePanel;
+
+    public bool noShoot = false;
+
     //Oggetti Bonus
     public int specialItemCount = 0;
 
@@ -83,7 +88,10 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(DistanceScore());
 
         //StartCoroutine(FPS());
-
+        pausePanel = GameObject.FindGameObjectWithTag("PausePanel");
+        pausePanel.SetActive(false);
+        pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
+        pauseButton.GetComponent<Button>().onClick.AddListener(PauseGame);
         fadeOutPanel = GameObject.FindGameObjectWithTag("FadeOutPanel");
         fadeOutPanel.GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
     }
@@ -170,8 +178,8 @@ public class GameManager : MonoBehaviour
         while (!endScore)
         {
             currentScore += (-(int)refMP.transform.position.z / 10);// * ((int)refMP.speed / 10);
-            scoreGO.text = "Your score: " + currentScore.ToString();
-            scoreFL.text = "Your final score: " + currentScore.ToString();
+            scoreGO.text = "YOUR SCORE: " + currentScore.ToString();
+            scoreFL.text = "FINAL SCORE: " + currentScore.ToString();
             yield return new WaitForSecondsRealtime(.1f);
         }
     }
@@ -262,6 +270,15 @@ public class GameManager : MonoBehaviour
     private void FinishedLevel(bool _on)
     {
         Time.timeScale = 0;
+        if (specialItemCount == 3)
+        {
+            currentScore += 50000;
+        }
+        pauseButton.SetActive(false);
+
+        nProjectiles = 0;
+        refMP.enabled = false;
+        endScore = true;
 
         for (int i = 0; i < refSM.laneArray.Length; i++)
         {
@@ -271,9 +288,11 @@ public class GameManager : MonoBehaviour
         panelFinishedLevel.SetActive(_on);
         panelFinishedLevel.GetComponent<AudioSource>().Play();
 
-
         //Salva il livello come completato nei player prefs
         SetLevelCompleted();
+
+        //StartCoroutine(FadeOutPanel(1));
+
     }
 
 
@@ -312,11 +331,7 @@ public class GameManager : MonoBehaviour
     // Stop all music, active panel Game Over and play sound
     private void GameOver(bool _on)
     {
-        if(specialItemCount == 3)
-        {
-            currentScore += 50000;
-        }
-
+        pauseButton.SetActive(false);
         //Time.timeScale = 0;
         nProjectiles = 0;
         refMP.enabled = false;
@@ -327,21 +342,45 @@ public class GameManager : MonoBehaviour
             refSM.laneArray[i].GetComponent<AudioSource>().Stop();
         }
 
-        StartCoroutine(FadeOutPanel());
+        StartCoroutine(FadeOutPanel(0));
         //panelGameOver.SetActive(_on);
         //panelGameOver.GetComponent<AudioSource>().Play();
     }
 
 
-    private IEnumerator FadeOutPanel()
+    private IEnumerator FadeOutPanel(int value)
     {
         fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
         yield return new WaitForSeconds(1f);
-        panelGameOver.SetActive(true);
+        if(value == 0)
+        {
+            panelGameOver.SetActive(true);
+        } else
+        {
+            panelFinishedLevel.SetActive(true);
+        }
         yield return new WaitForSeconds(1f);
         fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
     }
     
+
+    public void PauseGame ()
+    {
+        if(Time.timeScale == 1)
+        {
+            endScore = true;
+            noShoot = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            endScore = false;
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+            noShoot = false;
+        }
+    }
 
     //// Called when take a Condom, change score of value passed by delegate
     //private void Condom(int _value, string _name)

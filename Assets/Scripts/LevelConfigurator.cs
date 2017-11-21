@@ -11,9 +11,18 @@ public class LevelConfigurator : MonoBehaviour {
     public Sprite vaginaIconBar;
     public Sprite assIconBar;
 
+    public GameObject charUIFull;
+    public GameObject charUIOutline;
+
     public Sprite penisUI;
+    public Sprite penisUIFull;
+
     public Sprite vaginaUI;
+    public Sprite vaginaUIFull;
+
     public Sprite assUI;
+    public Sprite assUIFull;
+
 
     public GameObject penisRecharge;
     public GameObject vaginaRecharge;
@@ -26,7 +35,6 @@ public class LevelConfigurator : MonoBehaviour {
 
 
     public List<GameObject> bulletInScene = new List<GameObject>();
-
 
     GameDataTransfer refGDT;
 
@@ -57,6 +65,9 @@ public class LevelConfigurator : MonoBehaviour {
                 playerVagina.SetActive(false);
                 playerAss.SetActive(false);
 
+                charUIFull.GetComponent<Image>().sprite = penisUIFull;
+                charUIOutline.GetComponent<Image>().sprite = penisUI;
+
                 break;
             case 1:
                 //Il personaggio scelto è la vagina quindi attiviamo il corretto player, settiamo l'interfaccia corrispondente e i proiettili corretti in scena
@@ -71,6 +82,9 @@ public class LevelConfigurator : MonoBehaviour {
                     bulletInScene[i].SetActive(false);
                     //Debug.Log("INSTANTIATE NEW RECHARGE ITEM: " + i);
                 }
+
+                charUIFull.GetComponent<Image>().sprite = vaginaUIFull;
+                charUIOutline.GetComponent<Image>().sprite = vaginaUI;
 
                 Debug.Log("VAGINA SETUP!");
 
@@ -89,6 +103,9 @@ public class LevelConfigurator : MonoBehaviour {
                     bulletInScene[i].SetActive(false);
                     //Debug.Log("INSTANTIATE NEW RECHARGE ITEM: " + i);
                 }
+
+                charUIFull.GetComponent<Image>().sprite = assUIFull;
+                charUIOutline.GetComponent<Image>().sprite = assUI;
 
                 Debug.Log("ASS SETUP!");
 

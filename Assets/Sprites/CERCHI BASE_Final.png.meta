@@ -1,19 +1,15 @@
 fileFormatVersion: 2
-guid: fb6d280a46688c248ae8da591fbc3cbc
-timeCreated: 1490294606
+guid: 9cd04bad2fe1fe249b1a2e232f140ed9
+timeCreated: 1511285450
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: writing numbers in words_0
-    21300002: writing numbers in words_1
-    21300004: writing numbers in words_2
-    21300006: writing numbers in words_3
-    21300008: writing numbers in words_4
-    21300010: writing numbers in words_5
-    21300012: writing numbers in words_6
-    21300014: writing numbers in words_7
-    21300016: writing numbers in words_8
-    21300018: writing numbers in words_9
+    21300000: CERCHI BASE_Final_Yellow
+    21300002: CERCHI BASE_Final_Orange
+    21300004: CERCHI BASE_Final_LGreen
+    21300006: CERCHI BASE_Final_Fucsia
+    21300008: CERCHI BASE_Final_Green
+    21300010: CERCHI BASE_Final_Red
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -112,130 +108,78 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: writing numbers in words_0
+      name: CERCHI BASE_Final_Yellow
       rect:
         serializedVersion: 2
-        x: 7
-        y: 98
-        width: 25
-        height: 65
+        x: 27
+        y: 496
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: writing numbers in words_1
+      name: CERCHI BASE_Final_Orange
       rect:
         serializedVersion: 2
-        x: 64
-        y: 98
-        width: 40
-        height: 65
+        x: 529
+        y: 498
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: writing numbers in words_2
+      name: CERCHI BASE_Final_LGreen
       rect:
         serializedVersion: 2
-        x: 129
-        y: 98
-        width: 40
-        height: 65
+        x: 1025
+        y: 496
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: writing numbers in words_3
+      name: CERCHI BASE_Final_Fucsia
       rect:
         serializedVersion: 2
-        x: 192
-        y: 98
-        width: 44
-        height: 65
+        x: 6
+        y: 5
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: writing numbers in words_4
+      name: CERCHI BASE_Final_Green
       rect:
         serializedVersion: 2
-        x: 257
-        y: 98
-        width: 43
-        height: 65
+        x: 508
+        y: 7
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: writing numbers in words_5
+      name: CERCHI BASE_Final_Red
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 39
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: writing numbers in words_6
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 0
-        width: 43
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: writing numbers in words_7
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 43
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: writing numbers in words_8
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 0
-        width: 40
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: writing numbers in words_9
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 0
-        width: 40
-        height: 65
+        x: 1004
+        y: 5
+        width: 484
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

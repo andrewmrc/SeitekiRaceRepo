@@ -161,9 +161,13 @@ public class MainMenu : MonoBehaviour
             if(PlayerPrefs.GetInt("lvl_2") == 1)
             {
                 level2Button.GetComponent<Button>().interactable = true;
+                level2Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                level2Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             } else
             {
                 level2Button.GetComponent<Button>().interactable = false;
+                level2Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 128);
+                level2Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
 
@@ -172,9 +176,13 @@ public class MainMenu : MonoBehaviour
             if (PlayerPrefs.GetInt("lvl_3") == 1)
             {
                 level3Button.GetComponent<Button>().interactable = true;
+                level3Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                level3Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             } else
             {
                 level3Button.GetComponent<Button>().interactable = false;
+                level3Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 128);
+                level3Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
 
@@ -183,9 +191,13 @@ public class MainMenu : MonoBehaviour
             if (PlayerPrefs.GetInt("lvl_4") == 1)
             {
                 level4Button.GetComponent<Button>().interactable = true;
+                level4Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                level4Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             } else
             {
                 level4Button.GetComponent<Button>().interactable = false;
+                level4Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 128);
+                level4Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
 
@@ -194,9 +206,13 @@ public class MainMenu : MonoBehaviour
             if (PlayerPrefs.GetInt("lvl_5") == 1)
             {
                 level5Button.GetComponent<Button>().interactable = true;
+                level5Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                level5Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             } else
             {
                 level5Button.GetComponent<Button>().interactable = false;
+                level5Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 128);
+                level5Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
 
@@ -205,9 +221,13 @@ public class MainMenu : MonoBehaviour
             if (PlayerPrefs.GetInt("lvl_6") == 1)
             {
                 level6Button.GetComponent<Button>().interactable = true;
+                level6Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                level6Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             } else
             {
                 level6Button.GetComponent<Button>().interactable = false;
+                level6Button.transform.GetChild(0).GetComponent<Text>().color = new Color32(255, 255, 255, 128);
+                level6Button.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 128);
             }
         }
 

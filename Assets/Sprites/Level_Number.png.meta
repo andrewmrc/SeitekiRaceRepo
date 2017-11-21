@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 45a5c843fce528f449753689a840fda9
-timeCreated: 1510594059
+guid: f4d34d5cf01e13448b7395d70f15b0d2
+timeCreated: 1511286238
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Cerchi_LightGreen
-    21300002: Cerchi_Yellow
-    21300004: Cerchi_Red
-    21300006: Cerchi_Green
-    21300008: Cerchi_Orange
-    21300010: Cerchi_Fucsia
+    21300000: Level_Number_1
+    21300002: Level_Number_2
+    21300004: Level_Number_3
+    21300006: Level_Number_4
+    21300008: Level_Number_5
+    21300010: Level_Number_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -108,78 +108,78 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cerchi_LightGreen
+      name: Level_Number_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 303
+        width: 123
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level_Number_2
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 287
+        width: 171
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level_Number_3
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 296
+        width: 168
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level_Number_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 654
-        width: 604
-        height: 604
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cerchi_Yellow
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 654
-        width: 604
-        height: 604
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cerchi_Red
-      rect:
-        serializedVersion: 2
-        x: 1352
-        y: 654
-        width: 604
-        height: 604
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Cerchi_Green
-      rect:
-        serializedVersion: 2
-        x: 7
         y: 0
-        width: 597
-        height: 604
+        width: 186
+        height: 237
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cerchi_Orange
+      name: Level_Number_5
       rect:
         serializedVersion: 2
-        x: 669
-        y: 0
-        width: 604
-        height: 604
+        x: 225
+        y: 3
+        width: 187
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cerchi_Fucsia
+      name: Level_Number_6
       rect:
         serializedVersion: 2
-        x: 1352
-        y: 0
-        width: 604
-        height: 604
+        x: 464
+        y: 5
+        width: 164
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
