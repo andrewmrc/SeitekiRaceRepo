@@ -20,6 +20,7 @@ public class MovePlayer : MonoBehaviour
 
     float offsetValue = 0.25f;
 
+    private bool rotating;
 
     private void Start()
     {
@@ -123,8 +124,13 @@ public class MovePlayer : MonoBehaviour
             anim.SetBool("isTurnLeft", true);
             //delCurrentLane(numLane);
             ChangeLane(numLane);
-            StartCoroutine(SetFalseBool("isTurnLeft"));
-            
+            //StartCoroutine(SetFalseBool("isTurnLeft"));
+            if (!rotating)
+            {
+                rotating = true;
+                //StartCoroutine(RotateCharLeft());
+                StartCoroutine(RotateMe(Vector3.forward * -25f, 0.1f));
+            }
         }
 
         // If i move right
@@ -134,10 +140,36 @@ public class MovePlayer : MonoBehaviour
             numLane++;
             //delCurrentLane(numLane);
             ChangeLane(numLane);
-            StartCoroutine(SetFalseBool("isTurnRight"));
-            
+            //StartCoroutine(SetFalseBool("isTurnRight"));
+            if (!rotating)
+            {
+                rotating = true;
+                //StartCoroutine(RotateCharRight());
+                StartCoroutine(RotateMe(Vector3.forward * 25f, 0.1f));
+            }
         }
     }
+
+
+    IEnumerator RotateMe(Vector3 byAngles, float inTime)
+    {
+        Quaternion fromAngle = transform.rotation;
+        Quaternion toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        for (float t = 0f; t < 1f; t += Time.deltaTime / inTime)
+        {
+            transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
+            yield return null;
+        }
+        
+        for (float t = 0f; t < 1f; t += Time.deltaTime / inTime)
+        {
+            transform.rotation = Quaternion.Lerp(toAngle, fromAngle, t);
+            yield return null;
+        }
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+        rotating = false;
+    }
+
 
     // Method called for switch lane that call a coroutine
     private void ChangeLane(int _numLane)
