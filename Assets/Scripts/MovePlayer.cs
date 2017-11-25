@@ -129,7 +129,7 @@ public class MovePlayer : MonoBehaviour
             {
                 rotating = true;
                 //StartCoroutine(RotateCharLeft());
-                StartCoroutine(RotateMe(Vector3.forward * -25f, 0.1f));
+                StartCoroutine(RotateMe(Vector3.forward * -25f, 0.2f));
             }
         }
 
@@ -145,7 +145,7 @@ public class MovePlayer : MonoBehaviour
             {
                 rotating = true;
                 //StartCoroutine(RotateCharRight());
-                StartCoroutine(RotateMe(Vector3.forward * 25f, 0.1f));
+                StartCoroutine(RotateMe(Vector3.forward * 25f, 0.2f));
             }
         }
     }

@@ -266,10 +266,42 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //Setta nei player prefs il valore del proprio livello a 1
+    private void SetLevelCompleted()
+    {
+        switch (levelKeyIdentifier)
+        {
+            case 1:
+                PlayerPrefs.SetInt("lvl_2", 1);
+                break;
+
+            case 2:
+                PlayerPrefs.SetInt("lvl_3", 1);
+                break;
+
+            case 3:
+                PlayerPrefs.SetInt("lvl_4", 1);
+                break;
+
+            case 4:
+                PlayerPrefs.SetInt("lvl_5", 1);
+                break;
+
+            case 5:
+                PlayerPrefs.SetInt("lvl_6", 1);
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
+
     // Stop all music, active panel Finish Level and play sound
     private void FinishedLevel(bool _on)
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         if (specialItemCount == 3)
         {
             currentScore += 50000;
@@ -285,46 +317,14 @@ public class GameManager : MonoBehaviour
             refSM.laneArray[i].GetComponent<AudioSource>().Stop();
         }
 
-        panelFinishedLevel.SetActive(_on);
-        panelFinishedLevel.GetComponent<AudioSource>().Play();
+        //panelFinishedLevel.SetActive(_on);
+        //panelFinishedLevel.GetComponent<AudioSource>().Play();
 
         //Salva il livello come completato nei player prefs
         SetLevelCompleted();
 
-        //StartCoroutine(FadeOutPanel(1));
+        StartCoroutine(FadeOutPanel(1));
 
-    }
-
-
-    //Setta nei player prefs il valore del proprio livello a 1
-    private void SetLevelCompleted()
-    {
-        switch (levelKeyIdentifier)
-        {
-            case 2:
-                PlayerPrefs.SetInt("lvl_2", 1);
-                break;
-
-            case 3:
-                PlayerPrefs.SetInt("lvl_3", 1);
-                break;
-
-            case 4:
-                PlayerPrefs.SetInt("lvl_4", 1);
-                break;
-
-            case 5:
-                PlayerPrefs.SetInt("lvl_5", 1);
-                break;
-
-            case 6:
-                PlayerPrefs.SetInt("lvl_6", 1);
-                break;
-
-            default:
-
-                break;
-        }
     }
 
 
@@ -358,6 +358,7 @@ public class GameManager : MonoBehaviour
         } else
         {
             panelFinishedLevel.SetActive(true);
+            panelFinishedLevel.GetComponent<AudioSource>().Play();
         }
         yield return new WaitForSeconds(1f);
         fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);

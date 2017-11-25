@@ -43,11 +43,15 @@ public class CollisionPlayer : MonoBehaviour
 
         if (collision.gameObject.tag == "Obstacle")
         {
+            this.gameObject.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             delGameOver(true);
         }
 
         if (collision.gameObject.tag == "EndTrack")
         {
+            this.gameObject.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
             delFinishLevel(true);
         }
 
@@ -114,6 +118,8 @@ public class CollisionPlayer : MonoBehaviour
 
         if (collision.gameObject.tag == "Dick Pig")
         {
+            this.gameObject.transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             delGameOver(true);
         }
     }
