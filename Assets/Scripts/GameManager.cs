@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private CollisionPlayer refCP;
     private SoundManager refSM;
     private InvincibilitySphere refInv;
+    private GameDataTransfer refGDT;
+    private AudioManager refAM;
     public GameObject panelGameOver, panelFinishedLevel;
     public Text scoreGO, scoreFL, nProjectilesText;
     public Image startCounter;
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
         refSM = FindObjectOfType<SoundManager>();
         refCP = FindObjectOfType<CollisionPlayer>();
         refInv = FindObjectOfType<InvincibilitySphere>();
+        refGDT = FindObjectOfType<GameDataTransfer>();
+        refAM = FindObjectOfType<AudioManager>();
         refCP.delGameOver = GameOver;
         refCP.delFinishLevel = FinishedLevel;
         //refCP.delCondom = Condom;
@@ -185,12 +189,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Show green plus score feedback
-    public void FeedbackBonusCO(float _value)
+    public void FeedbackBonusCO(float _value, bool _audioON)
     {
         //Debug.Log("CallBonus");
 
         //Attiva la clip audio
-        delCurrentLane(refMP.numLane, true);
+        if (_audioON) {
+            delCurrentLane(refMP.numLane, true);
+        }
 
         GameObject textSpawnedBonus = textScorePlayer.gameObject.Spawn(new Vector3(textScorePlayer.transform.position.x, textScorePlayer.transform.position.y, textScorePlayer.transform.position.z), Quaternion.Euler(textScorePlayer.transform.rotation.x, 0, textScorePlayer.transform.rotation.z)) as GameObject;
 
@@ -233,14 +239,50 @@ public class GameManager : MonoBehaviour
     //Handle Bonus
     private void Bonus(int _value)
     {
+        //Play bonus clip based on current character
+        int charIndex = 0;
+        if (refGDT != null)
+            charIndex = refGDT.SelectedPlayer;
+        switch (charIndex)
+        {
+            case 0:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.penisBonus);
+                break;
+
+            case 1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.vaginaBonus);
+                break;
+
+            case -1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.assBonus);
+                break;
+        }
         currentScore += _value;
-        FeedbackBonusCO(_value);
+        FeedbackBonusCO(_value, true);
     }
 
 
     //Handle Malus
     private void Malus(int _value)
     {
+        //Play malus clip based on current character
+        int charIndex = 0;
+        if (refGDT != null)
+            charIndex = refGDT.SelectedPlayer;
+        switch (charIndex)
+        {
+            case 0:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.penisMalus);
+                break;
+
+            case 1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.vaginaMalus);
+                break;
+
+            case -1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.assMalus);
+                break;
+        }
         currentScore -= _value;
         FeedbackMalusCO(_value);
     }
@@ -266,7 +308,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //Setta nei player prefs il valore del proprio livello a 1
+    //Setta nei player prefs il valore del livello sbloccato a 1
     private void SetLevelCompleted()
     {
         switch (levelKeyIdentifier)
@@ -331,6 +373,26 @@ public class GameManager : MonoBehaviour
     // Stop all music, active panel Game Over and play sound
     private void GameOver(bool _on)
     {
+        //Play death clip based on current character
+        int charIndex = 0;
+        if(refGDT != null)
+            charIndex = refGDT.SelectedPlayer;
+        switch (charIndex)
+        {
+            case 0:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.penisDead);
+                break;
+
+            case 1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.vaginaDead);
+                break;
+
+            case -1:
+                refAM.GetComponent<AudioSource>().PlayOneShot(refAM.assDead);
+                break;
+        }
+
+
         pauseButton.SetActive(false);
         //Time.timeScale = 0;
         nProjectiles = 0;

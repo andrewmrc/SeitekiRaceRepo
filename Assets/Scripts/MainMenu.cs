@@ -23,54 +23,56 @@ public class MainMenu : MonoBehaviour
     public GameObject level5Button;
     public GameObject level6Button;
 
+    public AudioClip penisButtonAudioClip, assButtonAudioClip, vaginaButtonAudioClip, genericButtonAudioClip;
 
     public void Start()
     {
+        StartCoroutine(fadeIn());
         SetupLevels();
         CheckLevels();
     }
 
-    private void Update()
-    {
-        CheckMousePosition();
+    //private void Update()
+    //{
+    //    CheckMousePosition();
 
-        if (Input.GetMouseButtonDown(0) && blinkingObject != null)
-        {
-            // Se é il player lo fa scomparire, non lo fa distruggere e fa apparire i circuiti
-            if (blinkingObject.CompareTag("Player"))
-            {
-                delChoosedPlayer(blinkingObject.name);
-                playerPool.SetActive(false);
-                Debug.Log(blinkingObject.name);
-                StartFadeOut();
-                //circuitPool.SetActive(true);
-            }
-            // cliccando su un circuito lancio il delegato e cambio scena
-            //else if (blinkingObject.CompareTag("Circuit"))
-            //{
-            //    Debug.Log(blinkingObject.name);
-            //    delChoosedTrack(blinkingObject.name);
-            //    SceneManager.LoadScene(blinkingObject.name);
-            //}
-        }
-    }
+    //    if (Input.GetMouseButtonDown(0) && blinkingObject != null)
+    //    {
+    //        // Se é il player lo fa scomparire, non lo fa distruggere e fa apparire i circuiti
+    //        if (blinkingObject.CompareTag("Player"))
+    //        {
+    //            delChoosedPlayer(blinkingObject.name);
+    //            playerPool.SetActive(false);
+    //            Debug.Log(blinkingObject.name);
+    //            StartFadeOut();
+    //            //circuitPool.SetActive(true);
+    //        }
+    //        // cliccando su un circuito lancio il delegato e cambio scena
+    //        //else if (blinkingObject.CompareTag("Circuit"))
+    //        //{
+    //        //    Debug.Log(blinkingObject.name);
+    //        //    delChoosedTrack(blinkingObject.name);
+    //        //    SceneManager.LoadScene(blinkingObject.name);
+    //        //}
+    //    }
+    //}
 
-    // Serve per far fare l'animazione all'oggetto su cui é sopra il mouse
-    private void CheckMousePosition()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //// Serve per far fare l'animazione all'oggetto su cui é sopra il mouse
+    //private void CheckMousePosition()
+    //{
+    //    RaycastHit hit;
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            Debug.DrawLine(ray.origin, hit.point, Color.blue);
-            blinkingObject = hit.transform.gameObject;
-        }
-        else
-        {
-            blinkingObject = null;
-        }
-    }
+    //    if (Physics.Raycast(ray, out hit, 100))
+    //    {
+    //        Debug.DrawLine(ray.origin, hit.point, Color.blue);
+    //        blinkingObject = hit.transform.gameObject;
+    //    }
+    //    else
+    //    {
+    //        blinkingObject = null;
+    //    }
+    //}
 
 
     public void CharSelected (int charIndex)
@@ -78,6 +80,23 @@ public class MainMenu : MonoBehaviour
         //salvarsi quale personaggio è stato scelto
         GameDataTransfer dataObject = FindObjectOfType<GameDataTransfer>();
         dataObject.SelectedPlayer = charIndex;
+
+        //Fa partire un audio diverso a seconda del personaggio scelto
+        switch (charIndex)
+        {
+            case 0:
+                this.gameObject.GetComponent<AudioSource>().PlayOneShot(penisButtonAudioClip);
+                break;
+            case 1:
+                this.gameObject.GetComponent<AudioSource>().PlayOneShot(vaginaButtonAudioClip);
+                break;
+            case -1:
+                this.gameObject.GetComponent<AudioSource>().PlayOneShot(assButtonAudioClip);
+                break;
+
+        }
+
+        //Configura le schermate successive
         charPanel.SetActive(false);
         circuitPanel.SetActive(true);
         charSelectText.SetActive(false);
@@ -87,6 +106,7 @@ public class MainMenu : MonoBehaviour
 
     public void CircuitSelected(int levelChosen)
     {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(genericButtonAudioClip);
         levelIndex = levelChosen;
 
         StartFadeOut();
@@ -94,11 +114,29 @@ public class MainMenu : MonoBehaviour
     }
 
 
+    public void PlayGenericAudioButton()
+    {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(genericButtonAudioClip);
+    }
+
     private void StartFadeOut()
     {
         //devo rimuovere i tasti "CIRCUITO" e iniziare il gioco
         fadeImage.raycastTarget = true;
         StartCoroutine(fadeOut());
+    }
+
+
+    IEnumerator fadeIn()
+    {
+        while (fadeImage.color.a > 0.01f)
+        {
+            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 0f), Time.deltaTime * 2);
+            print(fadeImage.color);
+            yield return new WaitForEndOfFrame();
+        }
+        fadeImage.color = new Color(0, 0, 0, 0f);
+        fadeImage.raycastTarget = false;
     }
 
 

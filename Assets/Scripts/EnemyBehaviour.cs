@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour {
             if (health == 0)
             {
                 //Destroy(this.gameObject);
-                refGM.FeedbackBonusCO(3000);
+                refGM.FeedbackBonusCO(3000, false);
                 this.gameObject.SetActive(false);
             }
             if (this.gameObject.activeSelf == true)
