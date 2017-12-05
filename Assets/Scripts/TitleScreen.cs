@@ -14,47 +14,22 @@ public class TitleScreen : MonoBehaviour {
     void Start () {
         StartCoroutine(HandleTitleScreen());
 	}
-	
+
 
     IEnumerator HandleTitleScreen()
     {
-        StartCoroutine(fadeIn());
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
         yield return new WaitForSeconds(3f);
-        StartCoroutine(fadeOut());
-        yield return new WaitForSeconds(2f);
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
+        yield return new WaitForSeconds(1.5f);
         cmLOGO.gameObject.SetActive(false);
         biokipLOGO.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(fadeIn());
+        yield return new WaitForSeconds(1.5f);
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
         yield return new WaitForSeconds(3f);
-        StartCoroutine(fadeOut());
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
         yield return new WaitForSeconds(3f);
         StartLevel();
-    }
-
-
-    IEnumerator fadeIn()
-    {
-        while (fadeImage.color.a > 0.01f)
-        {
-            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 0f), Time.deltaTime * 2);
-            print(fadeImage.color);
-            yield return new WaitForEndOfFrame();
-        }
-        fadeImage.color = new Color(0, 0, 0, 0f);
-        fadeImage.raycastTarget = false;
-    }
-
-
-    IEnumerator fadeOut()
-    {
-        while (fadeImage.color.a < 0.99f)
-        {
-            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 1f), Time.deltaTime * 2);
-            print(fadeImage.color);
-            yield return new WaitForEndOfFrame();
-        }
-        fadeImage.color = new Color(0, 0, 0, 1f);
     }
 
 

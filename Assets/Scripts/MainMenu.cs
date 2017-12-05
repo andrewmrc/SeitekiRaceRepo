@@ -129,26 +129,30 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator fadeIn()
     {
-        while (fadeImage.color.a > 0.01f)
-        {
-            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 0f), Time.deltaTime * 2);
-            print(fadeImage.color);
-            yield return new WaitForEndOfFrame();
-        }
-        fadeImage.color = new Color(0, 0, 0, 0f);
+        //while (fadeImage.color.a > 0.01f)
+        //{
+        //    fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 0f), Time.deltaTime * 2);
+        //    print(fadeImage.color);
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //fadeImage.color = new Color(0, 0, 0, 0f);
         fadeImage.raycastTarget = false;
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
+        yield return new WaitForSeconds(1f);
     }
 
 
     IEnumerator fadeOut()
     {
-        while (fadeImage.color.a < 0.99f)
-        {
-            fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 1f), Time.deltaTime * 2);
-            print(fadeImage.color);
-            yield return new WaitForEndOfFrame();
-        }
-        fadeImage.color = new Color(0, 0, 0, 1f);
+        //while (fadeImage.color.a < 0.99f)
+        //{
+        //    fadeImage.color = Color.Lerp(fadeImage.color, new Color(0, 0, 0, 1f), Time.deltaTime * 2);
+        //    print(fadeImage.color);
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //fadeImage.color = new Color(0, 0, 0, 1f);
+        fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
+        yield return new WaitForSeconds(1f);
         StartLevel();
     }
 

@@ -60,7 +60,7 @@ public class CollisionPlayer : MonoBehaviour
             //delCondom(250, this.gameObject.name);
             delBonus(2500);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Bat")
@@ -68,7 +68,7 @@ public class CollisionPlayer : MonoBehaviour
             //delBat(500, this.gameObject.name);
             delMalus(5000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Handcuff")
@@ -76,7 +76,7 @@ public class CollisionPlayer : MonoBehaviour
             //delHandcuff(300, this.gameObject.name);
             delMalus(3000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Mouth")
@@ -84,7 +84,7 @@ public class CollisionPlayer : MonoBehaviour
             //delMouth(600, this.gameObject.name);
             delBonus(6000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Muzzle")
@@ -92,7 +92,7 @@ public class CollisionPlayer : MonoBehaviour
             //delMuzzle(400, this.gameObject.name);
             delMalus(4000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Underwear")
@@ -100,7 +100,7 @@ public class CollisionPlayer : MonoBehaviour
             //delUnderwear(500, this.gameObject.name);
             delBonus(5000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Pill")
@@ -108,7 +108,7 @@ public class CollisionPlayer : MonoBehaviour
             //delPill(900, this.gameObject.name);
             delBonus(9000);
             Destroy(collision.gameObject);
-            audioSource.Play();
+           //audioSource.Play();
         }
 
         if (collision.gameObject.tag == "Special")
