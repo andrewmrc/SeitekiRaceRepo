@@ -15,9 +15,9 @@ public class LeapButton : MonoBehaviour
 
     private void Update()
     {
-        if (refMM.blinkingObject == this.gameObject)
-            anim.SetBool("On", true);
-        else
-            anim.SetBool("On", false);       
+        //if (refMM.blinkingObject == this.gameObject)
+        //    anim.SetBool("On", true);
+        //else
+        //    anim.SetBool("On", false);       
     }
 }

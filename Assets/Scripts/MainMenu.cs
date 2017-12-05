@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject blinkingObject, playerPool, circuitPool, charPanel, circuitPanel, charSelectText, circuitSelectText;
+    public GameObject loadingText, playerPool, circuitPool, charPanel, circuitPanel, charSelectText, circuitSelectText;
     int levelIndex;
 
     // Delegato chiamato quando si sceglie un determinato tracciato
@@ -152,7 +152,8 @@ public class MainMenu : MonoBehaviour
         //}
         //fadeImage.color = new Color(0, 0, 0, 1f);
         fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
+        loadingText.SetActive(true);
         StartLevel();
     }
 
