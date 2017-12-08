@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public Action<int,bool> delCurrentLane;
 
     public GameObject scorePoint, fillPower;
-    public Text textScorePlayer;
+    public GameObject textScorePlayer;
     public int currentScore;
     public GameObject shootButton;
 
@@ -85,9 +85,9 @@ public class GameManager : MonoBehaviour
 
         refCP.delRecharge = RechargeProjectiles;
         //textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMesh>();
-        textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+        textScorePlayer = GameObject.FindGameObjectWithTag("ScoreText");
 
-        initialY = textScorePlayer.transform.localPosition.y;
+        //initialY = textScorePlayer.transform.localPosition.y;
         textScorePlayer.gameObject.SetActive(false);
         //StartCoroutine(DistanceScore());
 
@@ -97,7 +97,8 @@ public class GameManager : MonoBehaviour
         pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
         pauseButton.GetComponent<Button>().onClick.AddListener(PauseGame);
         fadeOutPanel = GameObject.FindGameObjectWithTag("FadeOutPanel");
-        fadeOutPanel.GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
+        //fadeOutPanel.GetComponent<Image>().canvasRenderer.SetAlpha(0.0f);
+        fadeOutPanel.GetComponent<Image>().CrossFadeAlpha(0f, 1f, true);
     }
 
 
@@ -202,8 +203,8 @@ public class GameManager : MonoBehaviour
 
         textSpawnedBonus.transform.SetParent(panelFinishedLevel.gameObject.transform.parent);
         textSpawnedBonus.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        textSpawnedBonus.GetComponent<Text>().color = Color.green;
-        textSpawnedBonus.GetComponent<HandleScoreTextUI>().scoreValue = _value;
+        textSpawnedBonus.transform.GetChild(0).GetComponent<Text>().color = Color.green;
+        textSpawnedBonus.transform.GetChild(0).GetComponent<HandleScoreTextUI>().scoreValue = _value;
         textSpawnedBonus.gameObject.SetActive(true);
 
     }
@@ -218,9 +219,9 @@ public class GameManager : MonoBehaviour
 
         textSpawnedMalus.transform.SetParent(textScorePlayer.gameObject.transform.parent);
         textSpawnedMalus.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        textSpawnedMalus.GetComponent<Text>().color = Color.red;
-        textSpawnedMalus.GetComponent<HandleScoreTextUI>().scoreValue = _value;
-        textSpawnedMalus.GetComponent<HandleScoreTextUI>().malus = true;
+        textSpawnedMalus.transform.GetChild(0).GetComponent<Text>().color = Color.red;
+        textSpawnedMalus.transform.GetChild(0).GetComponent<HandleScoreTextUI>().scoreValue = _value;
+        textSpawnedMalus.transform.GetChild(0).GetComponent<HandleScoreTextUI>().malus = true;
         textSpawnedMalus.gameObject.SetActive(true);
         fillPower.GetComponent<Image>().fillAmount -= .1f;
 

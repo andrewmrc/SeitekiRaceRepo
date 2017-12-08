@@ -15,10 +15,10 @@ public class HandleScoreTextUI : MonoBehaviour {
     public IEnumerator HandleMove ()
     {
         //fa muovere il text score verso l'alto
-        while (this.transform.localPosition.y <= 250f)
+        while (this.transform.parent.localPosition.y <= 250f)
         {
             //Debug.Log("CallBonus");
-            this.transform.localPosition += new Vector3(0f, 4f, 0f);
+            this.transform.parent.localPosition += new Vector3(0f, 4f, 0f);
             if (!malus)
             {
                 this.GetComponent<Text>().text = "+ " + scoreValue.ToString();
@@ -28,7 +28,7 @@ public class HandleScoreTextUI : MonoBehaviour {
             }
             yield return null;
         }
-        this.Recycle();
+        this.transform.parent.Recycle();
     }
 
 
