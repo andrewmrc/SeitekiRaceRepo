@@ -121,7 +121,7 @@ public class MovePlayer : MonoBehaviour
         if (left && !isMovingLane && numLane > -2)
         {
             numLane--;
-            anim.SetBool("isTurnLeft", true);
+            //anim.SetBool("isTurnLeft", true);
             //delCurrentLane(numLane);
             ChangeLane(numLane);
             //StartCoroutine(SetFalseBool("isTurnLeft"));
@@ -136,7 +136,7 @@ public class MovePlayer : MonoBehaviour
         // If i move right
         if (right && !isMovingLane && numLane < 2)
         {
-            anim.SetBool("isTurnRight", true);
+            //anim.SetBool("isTurnRight", true);
             numLane++;
             //delCurrentLane(numLane);
             ChangeLane(numLane);

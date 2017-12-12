@@ -6,8 +6,19 @@ public class GameDataTransfer : MonoBehaviour {
 
 	public int SelectedPlayer = 0;
 
-	// Use this for initialization
-	void Start () {
-		DontDestroyOnLoad (gameObject);
-	}
+    private static GameDataTransfer instanceRef;
+
+    void Awake()
+    {
+        if (instanceRef == null)
+        {
+            instanceRef = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
+
 }
