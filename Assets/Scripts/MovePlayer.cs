@@ -129,7 +129,14 @@ public class MovePlayer : MonoBehaviour
             {
                 rotating = true;
                 //StartCoroutine(RotateCharLeft());
-                StartCoroutine(RotateMe(Vector3.forward * -25f, 0.2f));
+                if (this.gameObject.name.Contains("gina"))
+                {
+                    StartCoroutine(RotateMe(Vector3.forward * -10f, 0.2f));
+                }
+                else
+                {
+                    StartCoroutine(RotateMe(Vector3.forward * -25f, 0.2f));
+                }
             }
         }
 
@@ -145,7 +152,14 @@ public class MovePlayer : MonoBehaviour
             {
                 rotating = true;
                 //StartCoroutine(RotateCharRight());
-                StartCoroutine(RotateMe(Vector3.forward * 25f, 0.2f));
+                if (this.gameObject.name.Contains("Vagina"))
+                {
+                    StartCoroutine(RotateMe(Vector3.forward * 10f, 0.2f));
+                }
+                else
+                {
+                    StartCoroutine(RotateMe(Vector3.forward * 25f, 0.2f));
+                }
             }
         }
     }
