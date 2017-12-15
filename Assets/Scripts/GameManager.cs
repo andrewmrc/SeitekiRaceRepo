@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
             //shootButton.SetActive(true);
             Time.timeScale = 1;
         }
+        pauseButton.GetComponent<Button>().interactable = true;
         refSM.StartPlayAudioClip();
         StartCoroutine(DistanceScore());
     }

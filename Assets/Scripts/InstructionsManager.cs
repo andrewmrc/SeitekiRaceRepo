@@ -13,16 +13,17 @@ public class InstructionsManager : MonoBehaviour {
         switch (pageCounter){
             case 0:
                 leftArrow.SetActive(false);
+                rightArrow.SetActive(true);
                 page1.SetActive(true);
                 page2.SetActive(false);
                 break;
 
             case 1:
                 leftArrow.SetActive(true);
-                rightArrow.SetActive(true);
+                rightArrow.SetActive(false);
                 page1.SetActive(false);
                 page2.SetActive(true);
-                page3.SetActive(false);
+                //page3.SetActive(false);
                 break;
 
             case 2:
@@ -40,7 +41,7 @@ public class InstructionsManager : MonoBehaviour {
         rightArrow.SetActive(true);
         page1.SetActive(true);
         page2.SetActive(false);
-        page3.SetActive(false);
+        //page3.SetActive(false);
     }
 
 }
