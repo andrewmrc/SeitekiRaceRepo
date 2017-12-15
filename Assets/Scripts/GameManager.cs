@@ -433,6 +433,7 @@ public class GameManager : MonoBehaviour
     {
         if(Time.timeScale == 1)
         {
+            pauseButton.GetComponent<Image>().sprite = pauseButton.GetComponent<PauseSpriteContainer>().playIcon;
             endScore = true;
             noShoot = true;
             pausePanel.SetActive(true);
@@ -442,6 +443,7 @@ public class GameManager : MonoBehaviour
         {
             endScore = false;
             Time.timeScale = 1;
+            pauseButton.GetComponent<Image>().sprite = pauseButton.GetComponent<PauseSpriteContainer>().pauseIcon;
             pausePanel.SetActive(false);
             noShoot = false;
         }
