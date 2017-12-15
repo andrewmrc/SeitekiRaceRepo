@@ -24,6 +24,7 @@ public class TitleScreen : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         parentalLOGO.gameObject.SetActive(false);
         cmLOGO.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
         fadeImage.GetComponent<Image>().CrossFadeAlpha(0f, 1f, false);
         yield return new WaitForSeconds(3f);
         fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
