@@ -14,20 +14,26 @@ public class HandleScoreTextUI : MonoBehaviour {
 
     public IEnumerator HandleMove ()
     {
+        //Imposta lo score nel campo testo a seconda se è un bonus o un malus
+        if (!malus)
+        {
+            this.GetComponent<Text>().text = "+ " + scoreValue.ToString();
+        }
+        else
+        {
+            this.GetComponent<Text>().text = "- " + scoreValue.ToString();
+        }
+
         //fa muovere il text score verso l'alto
         while (this.transform.parent.localPosition.y <= 250f)
         {
             //Debug.Log("CallBonus");
             this.transform.parent.localPosition += new Vector3(0f, 5f, 0f);
-            if (!malus)
-            {
-                this.GetComponent<Text>().text = "+ " + scoreValue.ToString();
-            } else
-            {
-                this.GetComponent<Text>().text = "- " + scoreValue.ToString();
-            }
+            
             yield return null;
         }
+
+        //Ricicla l'oggetto
         this.transform.parent.Recycle();
     }
 

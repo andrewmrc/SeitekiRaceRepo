@@ -43,7 +43,7 @@ public class ChangeSoundArc : MonoBehaviour
     {
         Debug.Log("BONUSRECHARGE!");
         refCP.delRecharge(10);
-        refCP.delBonus(10000);
+        refCP.delBonus(50000);
     }
 
 }

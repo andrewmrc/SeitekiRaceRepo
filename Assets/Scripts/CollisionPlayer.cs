@@ -58,7 +58,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Condom")
         {
             //delCondom(250, this.gameObject.name);
-            delBonus(2500);
+            delBonus(7000);
             Destroy(collision.gameObject);
             //audioSource.Play();
         }
@@ -66,7 +66,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Bat")
         {
             //delBat(500, this.gameObject.name);
-            delMalus(5000);
+            delMalus(10000);
             Destroy(collision.gameObject);
             //audioSource.Play();
         }
@@ -74,7 +74,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Handcuff")
         {
             //delHandcuff(300, this.gameObject.name);
-            delMalus(3000);
+            delMalus(8000);
             Destroy(collision.gameObject);
             //audioSource.Play();
         }
@@ -90,7 +90,7 @@ public class CollisionPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Muzzle")
         {
             //delMuzzle(400, this.gameObject.name);
-            delMalus(4000);
+            delMalus(6000);
             Destroy(collision.gameObject);
             //audioSource.Play();
         }

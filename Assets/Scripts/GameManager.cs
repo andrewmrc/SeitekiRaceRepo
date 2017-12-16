@@ -178,23 +178,33 @@ public class GameManager : MonoBehaviour
     }
 
     // Increment score based to distance of the player and 
-    //set it to text in 2 panel of Game Over and Finished Level
+    //set it to text in 2 panel: Game Over and Finished Level
     private IEnumerator DistanceScore()
     {
         while (!endScore)
         {
             currentScore += (-(int)refMP.transform.position.z / 10);// * ((int)refMP.speed / 10);
+
+            if (currentScore < 0)
+            {
+                currentScore = 0;
+            }
+
             scoreGO.text = "YOUR SCORE: " + currentScore.ToString();
             scoreFL.text = "FINAL SCORE: " + currentScore.ToString();
+
             yield return new WaitForSecondsRealtime(.1f);
         }
     }
 
     // Show green plus score feedback
-    public void FeedbackBonusCO(float _value, bool _audioON)
+    public void FeedbackBonusCO(int _value, bool _audioON)
     {
         //Debug.Log("CallBonus");
 
+        //Aumenta il punteggio
+        currentScore += _value;
+        
         //Attiva la clip audio
         if (_audioON) {
             delCurrentLane(refMP.numLane, true);
@@ -211,8 +221,15 @@ public class GameManager : MonoBehaviour
     }
 
     // Show red minus score feedback
-    public void FeedbackMalusCO(float _value)
+    public void FeedbackMalusCO(int _value)
     {
+        //Diminuisce il punteggio
+        currentScore -= _value;
+        if (currentScore < 0)
+        {
+            currentScore = 0;
+        }
+
         //Disattiva la clip audio
         delCurrentLane(refMP.numLane, false);
 
@@ -259,7 +276,7 @@ public class GameManager : MonoBehaviour
                 refAM.GetComponent<AudioSource>().PlayOneShot(refAM.assBonus);
                 break;
         }
-        currentScore += _value;
+        
         FeedbackBonusCO(_value, true);
     }
 
@@ -285,7 +302,7 @@ public class GameManager : MonoBehaviour
                 refAM.GetComponent<AudioSource>().PlayOneShot(refAM.assMalus);
                 break;
         }
-        currentScore -= _value;
+
         FeedbackMalusCO(_value);
     }
 
@@ -433,19 +450,22 @@ public class GameManager : MonoBehaviour
     {
         if(Time.timeScale == 1)
         {
+            Time.timeScale = 0;
             pauseButton.GetComponent<Image>().sprite = pauseButton.GetComponent<PauseSpriteContainer>().playIcon;
             endScore = true;
             noShoot = true;
             pausePanel.SetActive(true);
-            Time.timeScale = 0;
+            pausePanel.transform.SetAsLastSibling();
+            pauseButton.transform.SetAsLastSibling();
         }
         else
         {
             endScore = false;
-            Time.timeScale = 1;
             pauseButton.GetComponent<Image>().sprite = pauseButton.GetComponent<PauseSpriteContainer>().pauseIcon;
             pausePanel.SetActive(false);
             noShoot = false;
+            Time.timeScale = 1;
+            StartCoroutine(DistanceScore());
         }
     }
 
