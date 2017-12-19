@@ -153,16 +153,32 @@ public class MainMenu : MonoBehaviour
         //fadeImage.color = new Color(0, 0, 0, 1f);
         fadeImage.GetComponent<Image>().CrossFadeAlpha(1f, 1f, false);
         yield return new WaitForSeconds(1.5f);
-        loadingText.SetActive(true);
-        StartLevel();
+        //loadingText.SetActive(true);
+        StartCoroutine(LoadAsynch());
+        //StartLevel();
     }
 
 
-    private void StartLevel()
+    //private void StartLevel()
+    //{
+    //    //data.SelectedPlayer = int.Parse(SelectedPlayer.Split('r')[1]) - 1;
+    //    //data.SelectedCircuit = int.Parse(SelectedCircuit.Split('t')[1]) - 1;
+    //    SceneManager.LoadScene(levelIndex);
+    //}
+
+
+    IEnumerator LoadAsynch ()
     {
-        //data.SelectedPlayer = int.Parse(SelectedPlayer.Split('r')[1]) - 1;
-        //data.SelectedCircuit = int.Parse(SelectedCircuit.Split('t')[1]) - 1;
-        SceneManager.LoadScene(levelIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
+
+        loadingText.SetActive(true);
+
+        Vector3 rotation = new Vector3(0, 0, -180);
+        while (!operation.isDone)
+        {
+            loadingText.transform.GetChild(0).Rotate(rotation * Time.deltaTime, Space.World);
+            yield return null;
+        }
     }
 
 
