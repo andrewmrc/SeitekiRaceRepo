@@ -362,6 +362,10 @@ public class GameManager : MonoBehaviour
     //Setta nei player prefs il valore di best score in base al livello completato
     private void SetLevelBestScore(int _finalScore)
     {
+        //Creiamo una list di outline e ci mettiamo dentro tutte quelle attaccate all'oggetto scoreFL
+        List<Outline> outline = new List<Outline>();
+        outline.AddRange(scoreFL.gameObject.GetComponents<Outline>());
+
         switch (levelKeyIdentifier)
         {
             case 1:
@@ -369,13 +373,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv1"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv1", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+                    
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv1").ToString();
 
@@ -385,13 +390,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv2"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv2", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv2").ToString();
 
@@ -401,13 +407,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv3"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv3", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv3").ToString();
 
@@ -417,13 +424,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv4"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv4", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv4").ToString();
 
@@ -433,13 +441,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv5"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv5", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv5").ToString();
 
@@ -449,13 +458,14 @@ public class GameManager : MonoBehaviour
                 if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv6"))
                 {
                     PlayerPrefs.SetInt("BestScore_Lv6", _finalScore);
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
-                    scoreFL.color = Color.green;
+
+                    outline[1].effectColor = Color.green;
+                    //scoreFL.color = Color.green;
                 }
                 else
                 {
-                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
-                    scoreFL.color = Color.red;
+                    outline[1].effectColor = Color.red;
+                    //scoreFL.color = Color.red;
                 }
                 bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv6").ToString();
 

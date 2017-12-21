@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject loadingText, playerPool, circuitPool, charPanel, circuitPanel, charSelectText, circuitSelectText;
+    public GameObject loadingText, loadingImage, playerPool, circuitPool, charPanel, circuitPanel, charSelectText, circuitSelectText;
     int levelIndex;
 
     // Delegato chiamato quando si sceglie un determinato tracciato
@@ -172,11 +172,12 @@ public class MainMenu : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
 
         loadingText.SetActive(true);
+        loadingImage.SetActive(true);
 
         Vector3 rotation = new Vector3(0, 0, -180);
         while (!operation.isDone)
         {
-            loadingText.transform.GetChild(0).Rotate(rotation * Time.deltaTime, Space.World);
+            loadingImage.transform.Rotate(rotation * Time.deltaTime, Space.World);
             yield return null;
         }
     }
