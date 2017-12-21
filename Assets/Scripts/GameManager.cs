@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private GameDataTransfer refGDT;
     private AudioManager refAM;
     public GameObject panelGameOver, panelFinishedLevel;
-    public Text scoreGO, scoreFL, nProjectilesText;
+    public Text scoreGO, scoreFL, bestScore, nProjectilesText;
     public Image startCounter;
     public Transform lane_0, lane_1, lane_2, lane_less_1, lane_less_2;
 
@@ -359,6 +359,115 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //Setta nei player prefs il valore di best score in base al livello completato
+    private void SetLevelBestScore(int _finalScore)
+    {
+        switch (levelKeyIdentifier)
+        {
+            case 1:
+                //Controlla se il nuovo punteggio è maggiore di quello presente nei player prefs e in caso lo aggiorna
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv1"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv1", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv1").ToString();
+
+                break;
+
+            case 2:
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv2"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv2", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv2").ToString();
+
+                break;
+
+            case 3:
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv3"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv3", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv3").ToString();
+
+                break;
+
+            case 4:
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv4"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv4", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv4").ToString();
+
+                break;
+
+            case 5:
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv5"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv5", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv5").ToString();
+
+                break;
+
+            case 6:
+                if (_finalScore > PlayerPrefs.GetInt("BestScore_Lv6"))
+                {
+                    PlayerPrefs.SetInt("BestScore_Lv6", _finalScore);
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.green;
+                    scoreFL.color = Color.green;
+                }
+                else
+                {
+                    //scoreFL.gameObject.GetComponent<Outline>().effectColor = Color.red;
+                    scoreFL.color = Color.red;
+                }
+                bestScore.text = "BEST SCORE: " + PlayerPrefs.GetInt("BestScore_Lv6").ToString();
+
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
+
     // Stop all music, active panel Finish Level and play sound
     private void FinishedLevel(bool _on)
     {
@@ -378,11 +487,11 @@ public class GameManager : MonoBehaviour
             refSM.laneArray[i].GetComponent<AudioSource>().Stop();
         }
 
-        //panelFinishedLevel.SetActive(_on);
-        //panelFinishedLevel.GetComponent<AudioSource>().Play();
-
         //Salva il livello come completato nei player prefs
         SetLevelCompleted();
+
+        //Invia lo score attuale per salvarlo nei player prefs in cui sia un best score
+        SetLevelBestScore(currentScore);
 
         StartCoroutine(FadeOutPanel(1));
 
@@ -424,8 +533,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(FadeOutPanel(0));
-        //panelGameOver.SetActive(_on);
-        //panelGameOver.GetComponent<AudioSource>().Play();
+
     }
 
 
